@@ -4,12 +4,6 @@ filetype on
 syntax on
 colorscheme dracula
 
-" Disable Arrow keys in Escape mode
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
 set nocompatible
 set hidden
 set history=100
@@ -30,9 +24,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " line highlight
 set hlsearch
-
-nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
-
 " matching parenthesis
 set showmatch
 
