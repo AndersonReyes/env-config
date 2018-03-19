@@ -2,7 +2,7 @@ let mapleader="<Space>"
 
 filetype on
 syntax on
-colorscheme dracula
+colorscheme firewatch
 
 set nocompatible
 set hidden
@@ -33,7 +33,7 @@ set encoding=utf-8
 
 set laststatus=2
 set statusline=
-set statusline+=%#function#\ line:%l
+set statusline+=%#function#\ line:%l\ col:%v
 set statusline+=%=
 set statusline+=\ %f
 set statusline+=\ %m
