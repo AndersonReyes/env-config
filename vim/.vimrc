@@ -2,7 +2,8 @@ let mapleader="<Space>"
 
 filetype on
 syntax on
-colorscheme firewatch
+colorscheme gruvbox
+set background=dark
 
 set nocompatible
 set hidden
