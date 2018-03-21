@@ -39,3 +39,16 @@ set statusline+=%=
 set statusline+=\ %f
 set statusline+=\ %m
 set statusline+=\ %y
+
+" set auto close filenames
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx, *.php'
+
+" Autosave
+let g:auto_save = 1  " enable AutoSave on Vim startup"
+let g:auto_save_in_insert_mode = 0  " do not save while in insert mode"
+
