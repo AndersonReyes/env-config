@@ -1,5 +1,6 @@
-let mapleader="<Space>"
-
+let mapleader=" "
+"clear the regex buffer so disable highlight
+:map <leader>q :let @/=""<CR> 
 filetype on
 syntax on
 colorscheme gruvbox
