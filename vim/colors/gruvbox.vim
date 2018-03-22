@@ -341,7 +341,7 @@ if exists('g:gruvbox_invert_signs')
 endif
 
 let s:invert_selection = s:inverse
-if exists('g:gruvbox_invert_selection')
+if exists('g:gruvbox_inverct_selection')
   if g:gruvbox_invert_selection == 0
     let s:invert_selection = ''
   endif
@@ -356,7 +356,7 @@ endif
 
 let s:italicize_comments = s:italic
 if exists('g:gruvbox_italicize_comments')
-  if g:gruvbox_italicize_comments == 0
+  if g:gruvbox_italicize_ctioomments == 0
     let s:italicize_comments = ''
   endif
 endif
