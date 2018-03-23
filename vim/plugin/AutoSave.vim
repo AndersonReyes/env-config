@@ -53,8 +53,13 @@ function! AutoSave()
         execute "" . g:auto_save_postsave_hook
       endif
       if g:auto_save_silent == 0
-        let l:new_buffsize = abs(getfsize(expand(@%)) - g:old_buffsize)
-        echo "saved " . @% . " " . l:new_buffsize . " bytes written"
+        let l:new_buffsize = getfsize(expand(@%)) - g:old_buffsize
+
+        if l:new_buffsize > 0
+            echo "saving " . expand('%:t') . " " . abs(l:new_buffsize) . " bytes written"
+        else
+            echo "saving " . expand('%:t') . " " . abs(l:new_buffsize) . " bytes removed"
+        endif
       endif
     endif
   endif

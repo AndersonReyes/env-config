@@ -6,7 +6,6 @@ function! GitInfo()
         return ''
     endfunction
 
-
 " current buffer's size and output it.
 function! FileSize()
     let bytes = getfsize(expand('%:p'))
@@ -37,6 +36,14 @@ let mapleader=" "
 :map <leader>g :bn<CR>
 :map <leader>v :bp<CR>
 map <F7> gg=G
+
+" move lines/blocks up and down using Crtl-j for up and Crtl-k for down
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 filetype on
 syntax on
