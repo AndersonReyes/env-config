@@ -1,7 +1,7 @@
 function! GitInfo()
     let git = fugitive#head()
     if git != ''
-        return '->'.fugitive#head()." "
+        return fugitive#head()." "
     else
         return ''
     endfunction
@@ -37,13 +37,28 @@ let mapleader=" "
 :map <leader>v :bp<CR>
 map <F7> gg=G
 
+" Map arrow keys to move between split windows
+nnoremap <right> <C-w><right>
+nnoremap <left> <C-w><left>
+nnoremap <up> <C-w><up>
+nnoremap <down> <C-w><down>
+
+" l is up
+" k is down(j)
+" h is left
+" j is right(l)
+noremap h <left>
+noremap j <right>
+noremap k <down>
+noremap l <up>
+
 " move lines/blocks up and down using Crtl-j for up and Crtl-k for down
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+nnoremap <C-k> :m .+1<CR>==
+nnoremap <C-l> :m .-2<CR>==
+inoremap <C-k> <Esc>:m .+1<CR>==gi
+inoremap <C-l> <Esc>:m .-2<CR>==gi
+vnoremap <C-k> :m '>+1<CR>gv=gv
+vnoremap <C-l> :m '<-2<CR>gv=gv
 
 filetype on
 syntax on
@@ -64,7 +79,7 @@ set backspace=indent,eol,start
 set ttyfast
 set showmode
 set showcmd
-" set mouse=""
+set mouse=""
 
 " auto remove unncesary white space
 autocmd BufWritePre * :%s/\s\+$//e
@@ -86,17 +101,17 @@ set statusline+=%#identifier#\ \"%f\"
 set statusline+=\ %m
 set statusline+=\ %LL
 set statusline+=\ %{FileSize()}
-set statusline+=%#keyword#\ branch:%{GitInfo()}
+set statusline+=%#keyword#\ %{GitInfo()}
 
 " set auto close filenames
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js'
 
 " filenames like *.xml, *.xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
 "
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx, *.php'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx, *.php, *.js'
 
 " Autosave
-let g:auto_save = 1  " enable AutoSave on Vim startup"
+let g:auto_save = 1  " enable AutoSiave on Vim startup"
 let g:auto_save_in_insert_mode = 0  " do not save while in insert mode"
 
