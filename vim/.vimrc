@@ -1,34 +1,3 @@
-function! GitInfo()
-    let git = fugitive#head()
-    if git != ''
-        return fugitive#head()." "
-    else
-        return ''
-    endfunction
-
-" current buffer's size and output it.
-function! FileSize()
-    let bytes = getfsize(expand('%:p'))
-    if (bytes >= 1024)
-        let kbytes = bytes / 1024
-    endif
-    if (exists('kbytes') && kbytes >= 1000)
-        let mbytes = kbytes / 1000
-    endif
-
-    if bytes <= 0
-        return '0'
-    endif
-
-    if (exists('mbytes'))
-        return mbytes . 'MB '
-    elseif (exists('kbytes'))
-        return kbytes . 'KB '
-    else
-        return bytes . 'B '
-    endif
-endfunction
-
 " Keymappings
 "clear the regex buffer so disable highlight
 let mapleader=" "
@@ -95,13 +64,15 @@ set encoding=utf-8
 
 set laststatus=2
 set statusline=
-set statusline+=%#function#\ buffer#:%n\ line:%l\ col:%v
-set statusline+=%=
-set statusline+=%#identifier#\ \"%f\"
+set statusline+=%#identifier#\ %y\ \"%f\"
+set statusline+=\ \|
+set statusline+=%#keyword#\ window:%n
+set statusline+=\ \|
+set statusline+=%#number#\ line:%l\ col:%v
 set statusline+=\ %m
 set statusline+=\ %LL
-set statusline+=\ %{FileSize()}
-set statusline+=%#keyword#\ %{GitInfo()}
+set statusline+=\ \|
+set statusline+=%#function#\ %{fugitive#statusline()}
 
 " set auto close filenames
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js'
@@ -112,6 +83,11 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx, *.php, *.js'
 
 " Autosave
-let g:auto_save = 1  " enable AutoSiave on Vim startup"
-let g:auto_save_in_insert_mode = 0  " do not save while in insert mode"
+let g:auto_save = 1  " enable AutoSave on Vim startup"
+let g:auto_save_silent = 0
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
+let g:auto_save_write_all = 1
+
+
+
 

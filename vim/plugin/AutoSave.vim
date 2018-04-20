@@ -53,7 +53,7 @@ function! AutoSave()
         execute "" . g:auto_save_postsave_hook
       endif
       if g:auto_save_silent == 0
-        echo "saving " . expand('%:t')
+        echo ":w " . expand('%:t')
       endif
     endif
   endif
