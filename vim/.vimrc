@@ -1,3 +1,4 @@
+
 " Keymappings
 "clear the regex buffer so disable highlight
 let mapleader=" "
@@ -76,7 +77,6 @@ set statusline+=%#function#\ %{fugitive#statusline()}
 
 " set auto close filenames
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js'
-
 " filenames like *.xml, *.xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
 "
@@ -85,9 +85,4 @@ let g:closetag_xhtml_filenames = '*.xhtml,*.jsx, *.php, *.js'
 " Autosave
 let g:auto_save = 1  " enable AutoSave on Vim startup"
 let g:auto_save_silent = 0
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
 let g:auto_save_write_all = 1
-
-
-
-
