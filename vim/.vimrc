@@ -1,4 +1,3 @@
-
 " Keymappings
 "clear the regex buffer so disable highlight
 let mapleader=" "
@@ -66,11 +65,11 @@ set encoding=utf-8
 set laststatus=2
 set statusline=
 set statusline+=%#identifier#\ %y\ \"%f\"
+set statusline+=\ %m
 set statusline+=\ \|
 set statusline+=%#keyword#\ window:%n
 set statusline+=\ \|
 set statusline+=%#number#\ line:%l\ col:%v
-set statusline+=\ %m
 set statusline+=\ %LL
 set statusline+=\ \|
 set statusline+=%#function#\ %{fugitive#statusline()}
