@@ -95,7 +95,7 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias py3="python3"
+alias py="python3"
 
 # source vte.sh for tilix terminal emulator
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
