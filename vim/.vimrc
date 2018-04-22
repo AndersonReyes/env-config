@@ -64,7 +64,7 @@ set encoding=utf-8
 
 set laststatus=2
 set statusline=
-set statusline+=%#identifier#\ %y\ \"%f\"
+set statusline+=%#string#\ %y\ \"%f\"
 set statusline+=\ %m
 set statusline+=\ \|
 set statusline+=%#keyword#\ window:%n
