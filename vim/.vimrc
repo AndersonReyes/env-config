@@ -73,6 +73,15 @@ set statusline+=%#number#\ line:%l\ col:%v
 set statusline+=\ %LL
 set statusline+=\ \|
 set statusline+=%#function#\ %{fugitive#statusline()}
+set statusline+=%=
+set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" Syntastic linting
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " set auto close filenames
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js'
