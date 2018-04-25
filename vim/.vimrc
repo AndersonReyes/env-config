@@ -34,6 +34,11 @@ syntax on
 colorscheme dracula
 " set background=dark
 
+autocmd!
+autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+
+set cursorline
 set nocompatible
 set hidden
 set history=100
@@ -67,7 +72,7 @@ set statusline=
 set statusline+=%#string#\ %y\ \"%f\"
 set statusline+=\ %m
 set statusline+=\ \|
-set statusline+=%#keyword#\ window:%n
+set statusline+=%#keyword#\ buff:%n
 set statusline+=\ \|
 set statusline+=%#number#\ line:%l\ col:%v
 set statusline+=\ %LL
@@ -76,6 +81,7 @@ set statusline+=%#function#\ %{fugitive#statusline()}
 set statusline+=%=
 set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
 set statusline+=%*
+set statusline+=\ " "
 
 " Syntastic linting
 let g:syntastic_always_populate_loc_list = 1
