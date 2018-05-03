@@ -32,11 +32,12 @@ vnoremap <C-l> :m '<-2<CR>gv=gv
 filetype on
 syntax on
 colorscheme dracula
-" set background=dark
 
-autocmd!
-autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
+augroup CursorLineOnlyActiveWindow
+    autocmd!
+    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
+augroup END
 
 set cursorline
 set nocompatible
@@ -53,13 +54,13 @@ set backspace=indent,eol,start
 set ttyfast
 set showmode
 set showcmd
-set mouse=""
-
+set autoread
 " auto remove unncesary white space
 autocmd BufWritePre * :%s/\s\+$//e
 
-" line highlight
+" search highlight
 set hlsearch
+set incsearch
 " matching parenthesis
 set showmatch
 
@@ -74,14 +75,12 @@ set statusline+=\ %m
 set statusline+=\ \|
 set statusline+=%#keyword#\ buff:%n
 set statusline+=\ \|
-set statusline+=%#number#\ line:%l\ col:%v
-set statusline+=\ %LL
+set statusline+=%#number#\ pos:%l
 set statusline+=\ \|
 set statusline+=%#function#\ %{fugitive#statusline()}
-set statusline+=%=
+set statusline+=\ \|
 set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
 set statusline+=%*
-set statusline+=\ " "
 
 " Syntastic linting
 let g:syntastic_always_populate_loc_list = 1
