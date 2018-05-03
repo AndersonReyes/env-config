@@ -1,0 +1,11 @@
+[Desktop Entry]
+Exec=xdotool key F3
+Comment=Show all apps
+Icon=/home/anderson/Apps/env-config/icons/osx_one_icons/48x48/apps/scalable/Launchpad-launchpad.net.svg
+MimeType=
+Name=App Launcher
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Launcher
+
