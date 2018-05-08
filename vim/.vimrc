@@ -31,7 +31,8 @@ vnoremap <C-l> :m '<-2<CR>gv=gv
 
 filetype on
 syntax on
-colorscheme dracula
+colorscheme gruvbox
+set background=dark
 
 augroup CursorLineOnlyActiveWindow
     autocmd!
@@ -70,16 +71,13 @@ set encoding=utf-8
 
 set laststatus=2
 set statusline=
-set statusline+=%#string#\ %y\ \"%f\"
-set statusline+=\ %m
-set statusline+=\ \|
-set statusline+=%#keyword#\ buff:%n
-set statusline+=\ \|
-set statusline+=%#number#\ pos:%l
-set statusline+=\ \|
-set statusline+=%#function#\ %{fugitive#statusline()}
-set statusline+=\ \|
-set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
+set statusline+=%#number#\ #%n
+set statusline+=%#identifier#\ (%l,%c)\ Lines=%L
+set statusline+=%=
+set statusline+=%#gruvboxaqua#\ %y%#gruvboxred#%m
+set statusline+=%#string#\ \"%t\"
+
+set statusline+=%#string#\ %{fugitive#statusline()}
 set statusline+=%*
 
 " Syntastic linting
