@@ -31,8 +31,7 @@ vnoremap <C-l> :m '<-2<CR>gv=gv
 
 filetype on
 syntax on
-colorscheme gruvbox
-set background=dark
+colorscheme dracula
 
 augroup CursorLineOnlyActiveWindow
     autocmd!
