@@ -61,8 +61,8 @@ ZSH_THEME="anderson"
 plugins=(
   git
   colored-man-pages
-  zsh-syntax-highlighting
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -93,9 +93,11 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="mate ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="~/.zshrc"
+alias ohmyzsh="~/.oh-my-zsh"
 alias py="python3"
+alias reload_zsh="source ~/.zshrc"
+alias reload_ohzsh="source ~/.oh-my-zsh/oh-my-zsh.sh"
 
 # source vte.sh for tilix terminal emulator
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
