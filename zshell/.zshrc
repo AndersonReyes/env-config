@@ -63,6 +63,7 @@ plugins=(
   colored-man-pages
   zsh-autosuggestions
   zsh-syntax-highlighting
+  git-prompt
 )
 
 source $ZSH/oh-my-zsh.sh
