@@ -2,6 +2,7 @@
 "clear the regex buffer so disable highlight
 let mapleader=" "
 :map <leader>q :let @/=""<CR>
+" moving between the buffers
 :map <leader>g :bn<CR>
 :map <leader>v :bp<CR>
 map <F7> gg=G
@@ -11,6 +12,8 @@ nnoremap <right> <C-w><right>
 nnoremap <left> <C-w><left>
 nnoremap <up> <C-w><up>
 nnoremap <down> <C-w><down>
+" Enter lines by typing number and hit enter
+nnoremap <CR> G
 
 " l is up
 " k is down(j)
@@ -31,7 +34,7 @@ vnoremap <C-l> :m '<-2<CR>gv=gv
 
 filetype on
 syntax on
-colorscheme gruvbox
+colorscheme dracula
 set background=dark
 
 augroup CursorLineOnlyActiveWindow
@@ -56,9 +59,10 @@ set ttyfast
 set showmode
 set showcmd
 set autoread
+set noswapfile
+
 " auto remove unncesary white space
 autocmd BufWritePre * :%s/\s\+$//e
-
 " search highlight
 set hlsearch
 set incsearch
@@ -71,20 +75,13 @@ set encoding=utf-8
 
 set laststatus=2
 set statusline=
-set statusline+=%#number#\ #%n
-set statusline+=%#identifier#\ (%l,%c)\ Lines=%L
+set statusline+=%#DraculaPurpleBold#\ #%n
+set statusline+=%#DraculaCyan#\ \"%t\"
+set statusline+=%#Draculared#%m
+set statusline+=%#DraculaGreenBold#\ %{fugitive#statusline()}
 set statusline+=%=
-set statusline+=%#gruvboxaqua#\ %y%#gruvboxred#%m
-set statusline+=%#string#\ \"%t\"
-
-set statusline+=%#string#\ %{fugitive#statusline()}
-set statusline+=%*
-
-" Syntastic linting
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+set statusline+=%#DraculaOrange#\ %p%%
+set statusline+=%#DraculaYellow#\ %l:%c
 
 " set auto close filenames
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js'

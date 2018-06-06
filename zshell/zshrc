@@ -94,7 +94,6 @@ fi
 # Example aliases
 alias zshconfig="~/.zshrc"
 alias ohmyzsh="~/.oh-my-zsh"
-alias py="python3"
 alias reload_zsh="source ~/.zshrc"
 alias reload_ohzsh="source ~/.oh-my-zsh/oh-my-zsh.sh"
 
@@ -102,3 +101,12 @@ alias reload_ohzsh="source ~/.oh-my-zsh/oh-my-zsh.sh"
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh
 fi
+
+# theming for syntax highlight
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+
+
+# Rust, Cargo
+export PATH="$HOME/.cargo/bin:$PATH"

@@ -1,4 +1,4 @@
-" Dracula Theme: v1.3.2 {{{
+" Dracula Theme: v1.5.0 {{{
 "
 " https://github.com/zenorocha/dracula-theme
 "
@@ -52,6 +52,26 @@ let s:red       = ['#FF5555', 203]
 let s:yellow    = ['#F1FA8C', 228]
 
 let s:none      = ['NONE', 'NONE']
+
+let g:dracula_palette = {
+      \ 'fg': s:fg,
+      \ 'bg': s:bg,
+      \ 'selection': s:selection,
+      \ 'comment': s:comment,
+      \ 'cyan': s:cyan,
+      \ 'green': s:green,
+      \ 'orange': s:orange,
+      \ 'pink': s:pink,
+      \ 'purple': s:purple,
+      \ 'red': s:red,
+      \ 'yellow': s:yellow,
+      \
+      \ 'bglighter': s:bglighter,
+      \ 'bglight': s:bglight,
+      \ 'bgdark': s:bgdark,
+      \ 'bgdarker': s:bgdarker,
+      \ 'subtle': s:subtle,
+      \}
 
 if has('nvim')
   let g:terminal_color_0  = '#44475A'
@@ -114,7 +134,7 @@ function! s:h(scope, fg, ...) " bg, attr_list, special
   let l:fg = copy(a:fg)
   let l:bg = get(a:, 1, ['NONE', 'NONE'])
 
-  let l:attr_list = filter(get(a:, 2, ['NONE']), {idx, val -> type(val) == 1})
+  let l:attr_list = filter(get(a:, 2, ['NONE']), 'type(v:val) == 1')
   let l:attrs = len(l:attr_list) > 0 ? join(l:attr_list, ',') : 'NONE'
 
   " Falls back to coloring foreground group on terminals because
@@ -134,6 +154,14 @@ function! s:h(scope, fg, ...) " bg, attr_list, special
         \]
 
   execute join(l:hl_string, ' ')
+endfunction
+
+function! s:Background()
+  if g:dracula_colorterm || has('gui_running')
+    return s:bg
+  else
+    return s:none
+  endif
 endfunction
 
 "}}}2
@@ -182,8 +210,7 @@ call s:h('DraculaRedInverse', s:fg, s:red)
 call s:h('DraculaYellow', s:yellow)
 call s:h('DraculaYellowItalic', s:yellow, s:none, [s:attrs.italic])
 
-call s:h('DraculaError', s:red, s:none, [s:attrs.undercurl], s:red)
-call s:h('DraculaWarn', s:orange, s:none, [s:attrs.undercurl], s:orange)
+call s:h('DraculaError', s:red, s:none, [], s:red)
 
 call s:h('DraculaErrorLine', s:none, s:none, [s:attrs.undercurl], s:red)
 call s:h('DraculaWarnLine', s:none, s:none, [s:attrs.undercurl], s:orange)
@@ -203,75 +230,54 @@ call s:h('DraculaDiffDelete', s:red, s:bgdark)
 " }}}
 " User Interface: {{{
 
-" Core: {{{2
 set background=dark
-call s:h('Normal', s:fg, g:dracula_colorterm == 1 ? s:bg : s:none)
 
-hi! link Visual DraculaSelection
-hi! link VisualNOS Visual
-hi! link Search DraculaSearch
-hi! link IncSearch DraculaOrangeInverse
-
-" Status / Command Line
+" Required as some plugins will overwrite
+call s:h('Normal', s:fg, s:Background())
 call s:h('StatusLine', s:none, s:bglighter, [s:attrs.bold])
 call s:h('StatusLineNC', s:none, s:bglight)
 call s:h('WildMenu', s:bg, s:purple, [s:attrs.bold])
+call s:h('CursorLine', s:none, s:subtle)
 
-" Tabs
-hi! link TabLine DraculaBoundary
-hi! link TabLineFill DraculaBgDarker
-hi! link TabLineSel Normal
-
-" Popup Menu
-hi! link Pmenu DraculaBgDark
-hi! link PmenuSel DraculaSelection
-hi! link PmenuSbar DraculaBgDark
-hi! link PmenuThumb DraculaSelection
-
-" Messages
-hi! link ErrorMsg DraculaRedInverse
-hi! link WarningMsg DraculaOrangeInverse
-hi! link MoreMsg DraculaFgBold
-hi! link Question DraculaFgBold
-hi! link Title DraculaGreenBold
-
-" Folds
-hi! link Folded DraculaBoundary
-hi! link VertSplit DraculaBoundary
-hi! link FoldColumn DraculaSubtle
-
-" Line Numbers
-hi! link CursorLineNr DraculaYellow
-hi! link LineNr DraculaComment
-hi! link SignColumn DraculaComment
-
-" Whitespace / Non-text
-call s:h('CursorLine', s:none, s:subtle) " Required as some plugins will overwrite
-hi! link NonText DraculaSubtle
+hi! link ColorColumn  DraculaSelection
 hi! link CursorColumn DraculaSelection
-hi! link ColorColumn DraculaSelection
-
-" Diffs
-hi! link DiffAdd DraculaGreen
-hi! link DiffChange DraculaDiffChange
-hi! link DiffText DraculaDiffText
-hi! link DiffDelete DraculaDiffDelete
-
-"}}}2
-" NetRW: {{{2
-
-hi! link Directory DraculaPurpleBold
-
-" }}}2
-" GitGutter: {{{2
-hi! link GitGutterAdd DraculaGreen
-hi! link GitGutterChange DraculaYellow
-hi! link GitGutterChangeDelete DraculaOrange
-hi! link GitGutterDelete DraculaRed
-"}}}2
+hi! link CursorLineNr DraculaYellow
+hi! link DiffAdd      DraculaGreen
+hi! link DiffAdded    DiffAdd
+hi! link DiffChange   DraculaDiffChange
+hi! link DiffDelete   DraculaDiffDelete
+hi! link DiffRemoved  DiffDelete
+hi! link DiffText     DraculaDiffText
+hi! link Directory    DraculaPurpleBold
+hi! link ErrorMsg     DraculaRedInverse
+hi! link FoldColumn   DraculaSubtle
+hi! link Folded       DraculaBoundary
+hi! link IncSearch    DraculaOrangeInverse
+hi! link LineNr       DraculaComment
+hi! link MoreMsg      DraculaFgBold
+hi! link NonText      DraculaSubtle
+hi! link Pmenu        DraculaBgDark
+hi! link PmenuSbar    DraculaBgDark
+hi! link PmenuSel     DraculaSelection
+hi! link PmenuThumb   DraculaSelection
+hi! link Question     DraculaFgBold
+hi! link Search       DraculaSearch
+hi! link SignColumn   DraculaComment
+hi! link TabLine      DraculaBoundary
+hi! link TabLineFill  DraculaBgDarker
+hi! link TabLineSel   Normal
+hi! link Title        DraculaGreenBold
+hi! link VertSplit    DraculaBoundary
+hi! link Visual       DraculaSelection
+hi! link VisualNOS    Visual
+hi! link WarningMsg   DraculaOrangeInverse
 
 " }}}
 " Syntax: {{{
+
+" Required as some plugins will overwrite
+call s:h('MatchParen', s:fg, s:pink, [s:attrs.underline])
+call s:h('Conceal', s:comment, s:bglight)
 
 hi! link Comment DraculaComment
 hi! link Underlined DraculaFgUnderline
@@ -321,121 +327,6 @@ hi! link Tag DraculaCyan
 hi! link helpHyperTextJump DraculaLink
 hi! link helpCommand DraculaPurple
 hi! link helpExample DraculaGreen
-
-call s:h('MatchParen', s:fg, s:pink, [s:attrs.underline])
-call s:h('Conceal', s:comment, s:bglight)
-
-" CSS: {{{2
-
-hi! link cssAttrComma Delimiter
-hi! link cssBraces Delimiter
-hi! link cssSelectorOp Delimiter
-hi! link cssFunctionComma Delimiter
-hi! link cssAttributeSelector DraculaGreenItalic
-hi! link cssAttrRegion DraculaPink
-hi! link cssUnitDecorators DraculaPink
-hi! link cssProp DraculaCyan
-hi! link cssPseudoClassId DraculaGreenItalic
-
-"}}}2
-" Git Commit: {{{2
-
-" These groups appear when editing commit messages.
-" They are not part of the Diff interface of vim diff
-
-" The following two are misnomers. Colors are correct.
-hi! link diffFile DraculaGreen
-hi! link diffNewFile DraculaRed
-
-hi! link diffLine DraculaCyanItalic
-hi! link diffRemoved DraculaRed
-hi! link diffAdded DraculaGreen
-
-"}}}2
-" HTML: {{{2
-
-hi! link htmlTag DraculaFg
-hi! link htmlArg DraculaGreenItalic
-hi! link htmlTitle DraculaFg
-hi! link htmlH1 DraculaFg
-hi! link htmlSpecialChar DraculaPurple
-
-"}}}2
-" JavaScript: {{{2
-
-hi! link javaScriptBraces Delimiter
-hi! link javaScriptNumber Constant
-hi! link javaScriptNull Constant
-hi! link javaScriptFunction DraculaPink
-
-"}}}2
-" Markdown: {{{2
-
-hi! link markdownH1 DraculaPurpleBold
-hi! link markdownH2 markdownH1
-hi! link markdownH3 markdownH1
-hi! link markdownH4 markdownH1
-hi! link markdownH5 markdownH1
-hi! link markdownH6 markdownH1
-hi! link markdownHeadingDelimiter markdownH1
-hi! link markdownHeadingRule markdownH1
-
-hi! link markdownBold DraculaOrangeBold
-hi! link markdownItalic DraculaYellowItalic
-hi! link markdownBoldItalic DraculaOrangeBoldItalic
-
-hi! link markdownBlockquote DraculaCyan
-
-hi! link markdownCode DraculaGreen
-hi! link markdownCodeDelimiter DraculaGreen
-
-hi! link markdownListMarker DraculaCyan
-hi! link markdownOrderedListMarker DraculaCyan
-
-hi! link markdownRule DraculaComment
-
-hi! link markdownLinkText DraculaPink
-hi! link markdownUrl DraculaLink
-
-"}}}2
-" Ruby: {{{2
-
-let g:ruby_operators=1
-hi! link rubyStringDelimiter DraculaYellow
-hi! link rubyInterpolationDelimiter DraculaPink
-hi! link rubyCurlyBlock DraculaPink
-hi! link rubyBlockParameter DraculaOrangeItalic
-hi! link rubyBlockArgument DraculaOrangeItalic
-hi! link rubyInstanceVariable DraculaPurpleItalic
-hi! link rubyGlobalVariable DraculaPurple
-hi! link rubyRegexpDelimiter DraculaRed
-
-"}}}2
-" YAML: {{{2
-
-hi! link yamlBlockMappingKey DraculaCyan
-hi! link yamlPlainScalar DraculaYellow
-hi! link yamlAnchor DraculaPinkItalic
-hi! link yamlAlias DraculaGreenItalicUnderline
-hi! link yamlNodeTag DraculaPink
-hi! link yamlFlowCollection DraculaPink
-hi! link yamlFlowIndicator Delimiter
-
-"}}}2
-" Vim Script: {{{2
-
-hi! link vimOption DraculaCyanItalic
-hi! link vimAutoEventList DraculaCyanItalic
-hi! link vimAutoCmdSfxList DraculaCyanItalic
-hi! link vimSetSep Delimiter
-hi! link vimSetMod DraculaPink
-hi! link vimHiBang DraculaPink
-hi! link vimEnvVar DraculaPurple
-hi! link vimUserFunc DraculaGreen
-hi! link vimFunction DraculaGreen
-hi! link vimUserAttrbCmpltFunc DraculaGreen
-
-"}}}2
 
 "}}}
 
