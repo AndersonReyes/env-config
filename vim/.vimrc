@@ -32,9 +32,14 @@ inoremap <C-l> <Esc>:m .-2<CR>==gi
 vnoremap <C-k> :m '>+1<CR>gv=gv
 vnoremap <C-l> :m '<-2<CR>gv=gv
 
+
+" Insert new line without leaving normal mode
+nnoremap o o<Esc>k
+nnoremap O O<Esc>l
+
 filetype on
 syntax on
-colorscheme dracula
+colorscheme gruvbox
 set background=dark
 
 augroup CursorLineOnlyActiveWindow
@@ -75,13 +80,13 @@ set encoding=utf-8
 
 set laststatus=2
 set statusline=
-set statusline+=%#DraculaPurpleBold#\ #%n
-set statusline+=%#DraculaCyan#\ \"%t\"
-set statusline+=%#Draculared#%m
-set statusline+=%#DraculaGreenBold#\ %{fugitive#statusline()}
+set statusline+=%#GruvboxPurpleBold#\ #%n
+set statusline+=%#GruvboxOrange#\ %p%%
+set statusline+=%#GruvboxYellow#\ %l:%c
 set statusline+=%=
-set statusline+=%#DraculaOrange#\ %p%%
-set statusline+=%#DraculaYellow#\ %l:%c
+set statusline+=%#GruvboxAqua#\ \"%t\"
+set statusline+=%#GruvboxRed#%m
+set statusline+=%#GruvboxGreenBold#\ %{fugitive#statusline()}
 
 " set auto close filenames
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js'
