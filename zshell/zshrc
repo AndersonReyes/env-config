@@ -2,7 +2,7 @@
 export PATH=$HOME/Apps/firefox:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/anderson/.oh-my-zsh
+export ZSH=/home/anderson/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -96,17 +96,11 @@ alias zshconfig="~/.zshrc"
 alias ohmyzsh="~/.oh-my-zsh"
 alias reload_zsh="source ~/.zshrc"
 alias reload_ohzsh="source ~/.oh-my-zsh/oh-my-zsh.sh"
-
-# source vte.sh for tilix terminal emulator
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-    source /etc/profile.d/vte.sh
-fi
+alias pacman-update="sudo pacman -Syu"
+alias nvimrc="nvim ~/.config/nvim/init.vim"
 
 # theming for syntax highlight
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
 
-
-# Rust, Cargo
-export PATH="$HOME/.cargo/bin:$PATH"

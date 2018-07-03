@@ -15,6 +15,10 @@ nnoremap <down> <C-w><down>
 " Enter lines by typing number and hit enter
 nnoremap <CR> G
 
+" remap the untab
+nnoremap <S-Tab> <<
+inoremap <S-Tab> <C-d>
+
 " l is up
 " k is down(j)
 " h is left
@@ -32,15 +36,19 @@ inoremap <C-l> <Esc>:m .-2<CR>==gi
 vnoremap <C-k> :m '>+1<CR>gv=gv
 vnoremap <C-l> :m '<-2<CR>gv=gv
 
+" Remap esc to jj
+imap jj <Esc>
 
 " Insert new line without leaving normal mode
 nnoremap o o<Esc>k
 nnoremap O O<Esc>l
 
+set t_Co=256
+set termguicolors
+colorscheme dracula
+
 filetype on
 syntax on
-colorscheme gruvbox
-set background=dark
 
 augroup CursorLineOnlyActiveWindow
     autocmd!
@@ -80,13 +88,13 @@ set encoding=utf-8
 
 set laststatus=2
 set statusline=
-set statusline+=%#GruvboxPurpleBold#\ #%n
-set statusline+=%#GruvboxOrange#\ %p%%
-set statusline+=%#GruvboxYellow#\ %l:%c
+set statusline+=%#DraculaPurpleBold#\ #%n
+set statusline+=%#DraculaOrange#\ %p%%
+set statusline+=%#DraculaYellow#\ %l:%c
 set statusline+=%=
-set statusline+=%#GruvboxAqua#\ \"%t\"
-set statusline+=%#GruvboxRed#%m
-set statusline+=%#GruvboxGreenBold#\ %{fugitive#statusline()}
+set statusline+=%#DraculaCyan#\ \"%t\"
+set statusline+=%#DraculaRed#%m
+set statusline+=%#DraculaGreenBold#\ %{fugitive#statusline()}
 
 " set auto close filenames
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js'

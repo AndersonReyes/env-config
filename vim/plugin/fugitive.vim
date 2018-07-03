@@ -3063,7 +3063,7 @@ function! fugitive#statusline(...) abort
   if &statusline =~# '%[MRHWY]' && &statusline !~# '%[mrhwy]'
     return ',GIT'.status
   else
-    return 'Git'.status
+    return status
   endif
 endfunction
 
