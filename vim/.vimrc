@@ -1,54 +1,63 @@
-" Keymappings
-"clear the regex buffer so disable highlight
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+call plug#begin('~/.vim/plugins')
+Plug '~/.vim/plugins/ariake'
+Plug 'tpope/vim-fugitive'
+Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'vim-scripts/vim-auto-save'
+Plug 'ervandew/supertab'
+call plug#end()
+
+filetype on
+syntax on
+set t_Co=256
+set termguicolors
+set background=dark
+colorscheme ariake
+
+
 let mapleader=" "
 :map <leader>q :let @/=""<CR>
-" moving between the buffers
 :map <leader>g :bn<CR>
 :map <leader>v :bp<CR>
+map <F8> :so ~/.vimrc<CR>
 map <F7> gg=G
+imap jj <Esc>
 
-" Map arrow keys to move between split windows
 nnoremap <right> <C-w><right>
 nnoremap <left> <C-w><left>
 nnoremap <up> <C-w><up>
 nnoremap <down> <C-w><down>
-" Enter lines by typing number and hit enter
 nnoremap <CR> G
-
-" remap the untab
 nnoremap <S-Tab> <<
-inoremap <S-Tab> <C-d>
-
-" l is up
-" k is down(j)
-" h is left
-" j is right(l)
 noremap h <left>
 noremap j <right>
 noremap k <down>
 noremap l <up>
-
-" move lines/blocks up and down using Crtl-j for up and Crtl-k for down
+" Moving lines up and down"
 nnoremap <C-k> :m .+1<CR>==
 nnoremap <C-l> :m .-2<CR>==
+nnoremap + o<Esc>k
+nnoremap - O<Esc>l
+" Resizing buffers"
+nnoremap <leader><left> <C-W>5<<CR>
+nnoremap <leader><right> <C-W>5><CR>
+nnoremap <leader><down> <C-W>5+<CR>
+nnoremap <leader><up> <C-W>5-<CR>
+
+inoremap <S-Tab> <C-d>
 inoremap <C-k> <Esc>:m .+1<CR>==gi
 inoremap <C-l> <Esc>:m .-2<CR>==gi
+
 vnoremap <C-k> :m '>+1<CR>gv=gv
 vnoremap <C-l> :m '<-2<CR>gv=gv
-
-" Remap esc to jj
-imap jj <Esc>
-
-" Insert new line without leaving normal mode
-nnoremap o o<Esc>k
-nnoremap O O<Esc>l
-
-set t_Co=256
-set termguicolors
-colorscheme dracula
-
-filetype on
-syntax on
 
 augroup CursorLineOnlyActiveWindow
     autocmd!
@@ -88,22 +97,20 @@ set encoding=utf-8
 
 set laststatus=2
 set statusline=
-set statusline+=%#DraculaPurpleBold#\ #%n
-set statusline+=%#DraculaOrange#\ %p%%
-set statusline+=%#DraculaYellow#\ %l:%c
-set statusline+=%=
-set statusline+=%#DraculaCyan#\ \"%t\"
-set statusline+=%#DraculaRed#%m
-set statusline+=%#DraculaGreenBold#\ %{fugitive#statusline()}
+set statusline+=%#Statement#\ #%n
+set statusline+=%#Identifier#\ %p%%
+set statusline+=%#Number#\ %l:%c
+set statusline+=%#Function#\ \"%f\"
+set statusline+=%#Constant#%m
+set statusline+=%#String#\ %{fugitive#statusline()}
 
 " set auto close filenames
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js'
 " filenames like *.xml, *.xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
-"
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx, *.php, *.js'
-
 " Autosave
 let g:auto_save = 1  " enable AutoSave on Vim startup"
-let g:auto_save_silent = 0
+let g:auto_save_silent = 1
+let g:auto_save_in_insert_mode = 0
 let g:auto_save_write_all = 1

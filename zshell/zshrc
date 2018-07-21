@@ -1,8 +1,9 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/Apps/firefox:/usr/local/bin:$PATH
-
+export PATH=$HOME/Apps/firefox:/usr/local/bin:/usr/lib/hadoop:$PATH
+export JAVA_HOME=/usr/lib/jvm/default
 # Path to your oh-my-zsh installation.
 export ZSH=/home/anderson/.oh-my-zsh
+
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -75,9 +76,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
-  export EDITOR='vim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -97,10 +98,23 @@ alias ohmyzsh="~/.oh-my-zsh"
 alias reload_zsh="source ~/.zshrc"
 alias reload_ohzsh="source ~/.oh-my-zsh/oh-my-zsh.sh"
 alias pacman-update="sudo pacman -Syu"
-alias nvimrc="nvim ~/.config/nvim/init.vim"
+alias vimrc="vim ~/.vimrc"
+alias notes="cd ~/Documents/Notes"
+
+function notes-sync() {
+    local d="$1"
+    notes
+    git fetch origin master
+    git merge
+    git commit -am $d
+    git push origin master
+}
 
 # theming for syntax highlight
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
 
+if [[ $TILIX_ID ]]; then
+        source /etc/profile.d/vte.sh
+fi
