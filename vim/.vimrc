@@ -12,8 +12,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-scripts/vim-auto-save'
-Plug 'ervandew/supertab'
+Plug 'vim-syntastic/syntastic'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
+
+let g:ycm_global_ycm_extra_conf = '~/Apps/env-config/vim/ycm_extra_conf.py'
 
 filetype on
 syntax on
@@ -29,7 +32,6 @@ let mapleader=" "
 :map <leader>v :bp<CR>
 map <F8> :so ~/.vimrc<CR>
 map <F7> gg=G
-imap jj <Esc>
 
 nnoremap <right> <C-w><right>
 nnoremap <left> <C-w><left>
@@ -96,13 +98,14 @@ set number
 set encoding=utf-8
 
 set laststatus=2
-set statusline=
+set statusline=%=
+set statusline+=%#Function#\ \"%f\"
 set statusline+=%#Statement#\ #%n
 set statusline+=%#Identifier#\ %p%%
 set statusline+=%#Number#\ %l:%c
-set statusline+=%#Function#\ \"%f\"
 set statusline+=%#Constant#%m
 set statusline+=%#String#\ %{fugitive#statusline()}
+set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
 
 " set auto close filenames
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js'
@@ -114,3 +117,11 @@ let g:auto_save = 1  " enable AutoSave on Vim startup"
 let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 0
 let g:auto_save_write_all = 1
+
+
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['flake8']

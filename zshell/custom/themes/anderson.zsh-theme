@@ -1,5 +1,5 @@
 NEWLINE=$'\n'
-local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+local ret_status="%(?:%{$fg_bold[green]%}> :%{$fg_bold[red]%}> )"
 PROMPT='%{$fg_bold[blue]%}%c%{$reset_color%} $(git_prompt_info) ${ret_status}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[yellow]%}"
