@@ -23,7 +23,7 @@ syntax on
 set t_Co=256
 set termguicolors
 set background=dark
-colorscheme ariake
+colorscheme dracula
 
 
 let mapleader=" "
@@ -32,7 +32,7 @@ let mapleader=" "
 :map <leader>v :bp<CR>
 map <F8> :so ~/.vimrc<CR>
 map <F7> gg=G
-
+:imap jj <ESC>
 nnoremap <right> <C-w><right>
 nnoremap <left> <C-w><left>
 nnoremap <up> <C-w><up>
