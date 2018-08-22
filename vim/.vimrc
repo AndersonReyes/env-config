@@ -6,17 +6,20 @@ endif
 
 
 call plug#begin('~/.vim/plugins')
-Plug '~/.vim/plugins/ariake'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'rbgrouleff/bclose.vim'
 Plug 'tpope/vim-fugitive'
+Plug '/usr/local/opt/fzf'
+Plug 'airblade/vim-gitgutter'
+Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-scripts/vim-auto-save'
 Plug 'vim-syntastic/syntastic'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --rust-completer --clang-completer' }
+Plug 'scrooloose/nerdcommenter'
 call plug#end()
-
-let g:ycm_global_ycm_extra_conf = '~/Apps/env-config/vim/ycm_extra_conf.py'
 
 filetype on
 syntax on
@@ -24,6 +27,7 @@ set t_Co=256
 set termguicolors
 set background=dark
 colorscheme dracula
+highlight Normal ctermbg=None
 
 
 let mapleader=" "
@@ -48,6 +52,7 @@ nnoremap <C-k> :m .+1<CR>==
 nnoremap <C-l> :m .-2<CR>==
 nnoremap + o<Esc>k
 nnoremap - O<Esc>l
+
 " Resizing buffers"
 nnoremap <leader><left> <C-W>5<<CR>
 nnoremap <leader><right> <C-W>5><CR>
@@ -95,16 +100,18 @@ set showmatch
 
 " line numbers
 set number
+set relativenumber
 set encoding=utf-8
 
 set laststatus=2
-set statusline=%=
+set statusline=
 set statusline+=%#Function#\ \"%f\"
 set statusline+=%#Statement#\ #%n
+set statusline+=%=
 set statusline+=%#Identifier#\ %p%%
 set statusline+=%#Number#\ %l:%c
 set statusline+=%#Constant#%m
-set statusline+=%#String#\ %{fugitive#statusline()}
+set statusline+=%#String#\ %{fugitive#head(7)}
 set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
 
 " set auto close filenames
@@ -125,3 +132,21 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args = "--ignore=E265,E266,F401"
+
+let g:ycm_global_ycm_extra_conf = '~/Apps/env-config/vim/ycm_extra_conf.py'
+"" turn on completion in comments
+let g:ycm_complete_in_comments=1
+"" load ycm conf by default
+let g:ycm_confirm_extra_conf=0
+"" turn on tag completion
+let g:ycm_collect_identifiers_from_tags_files=1
+"" only show completion as a list instead of a sub-window
+set completeopt-=preview
+"" start completion from the first character
+let g:ycm_min_num_of_chars_for_completion=1
+"" don't cache completion items
+let g:ycm_cache_omnifunc=0
+"" complete syntax keywords
+let g:ycm_seed_identifiers_with_syntax=1
+
