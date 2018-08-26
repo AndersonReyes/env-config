@@ -26,8 +26,8 @@ syntax on
 set t_Co=256
 set termguicolors
 set background=dark
-colorscheme dracula
-highlight Normal ctermbg=None
+colorscheme onehalfdark
+"highlight Normal ctermbg=None
 
 
 let mapleader=" "

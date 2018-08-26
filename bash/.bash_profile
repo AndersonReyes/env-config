@@ -120,9 +120,13 @@ PROMPT_COMMAND=set_bash_prompt
 alias so-bash='source ~/.bash_profile'
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bash_profile'
-alias ls='ls -GH'
 
+# Set color alias for mac laptop
+platform="$(uname -s)"
+
+if [[ ${platform} =~ "Darwin" ]]; then
+    alias ls='ls -GH'
+fi
 
 export PATH=/Users/andersonreyes/Library/Python/2.7/bin:$PATH
-
 export PATH="$HOME/.cargo/bin:$PATH"
