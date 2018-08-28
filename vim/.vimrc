@@ -6,15 +6,14 @@ endif
 
 
 call plug#begin('~/.vim/plugins')
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'rbgrouleff/bclose.vim'
+Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug '/usr/local/opt/fzf'
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-scripts/vim-auto-save'
 Plug 'vim-syntastic/syntastic'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --rust-completer --clang-completer' }
@@ -26,8 +25,9 @@ syntax on
 set t_Co=256
 set termguicolors
 set background=dark
-colorscheme onehalfdark
+colorscheme gruvbox
 "highlight Normal ctermbg=None
+"highlight LineNr ctermfg=250 ctermbg=None
 
 
 let mapleader=" "

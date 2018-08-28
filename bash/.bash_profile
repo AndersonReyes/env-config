@@ -43,7 +43,7 @@ function is_git_repository {
 # Determine the branch/state information for this git repository.
 function set_git_branch {
   # Capture the output of the "git status" command.
-  git_status="$(git fetch 2> /dev/null && git status 2> /dev/null)"
+  git_status="$(git fetch 2> /dev/null; git status 2> /dev/null)"
 
   # Set color based on clean/staged/dirty.
   if [[ ${git_status} =~ "nothing to commit" ]]; then
