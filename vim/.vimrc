@@ -4,19 +4,16 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
 call plug#begin('~/.vim/plugins')
 Plug 'rbgrouleff/bclose.vim'
+Plug 'ervandew/supertab'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
-Plug '/usr/local/opt/fzf'
 Plug 'airblade/vim-gitgutter'
-Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'vim-syntastic/syntastic'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer --rust-completer --clang-completer' }
 Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
@@ -133,20 +130,3 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = "--ignore=E265,E266,F401"
-
-let g:ycm_global_ycm_extra_conf = '~/Apps/env-config/vim/ycm_extra_conf.py'
-"" turn on completion in comments
-let g:ycm_complete_in_comments=1
-"" load ycm conf by default
-let g:ycm_confirm_extra_conf=0
-"" turn on tag completion
-let g:ycm_collect_identifiers_from_tags_files=1
-"" only show completion as a list instead of a sub-window
-set completeopt-=preview
-"" start completion from the first character
-let g:ycm_min_num_of_chars_for_completion=1
-"" don't cache completion items
-let g:ycm_cache_omnifunc=0
-"" complete syntax keywords
-let g:ycm_seed_identifiers_with_syntax=1
-

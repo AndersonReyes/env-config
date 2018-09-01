@@ -130,3 +130,5 @@ fi
 
 export PATH=/Users/andersonreyes/Library/Python/2.7/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
+export DATABARN_BUCKET='data-server-bucket'
+export DATABARN_FILES_DIR_KEY='databarn-files'
