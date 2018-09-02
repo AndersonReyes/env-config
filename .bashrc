@@ -67,17 +67,17 @@ function set_git_branch {
   fi
 
   # Get the name of the branch.
-  branch="\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)"
+  branch="$(git branch 2>/dev/null | grep '^*' | cut -c 2-)"
 
   # Set the final branch string.
-  BRANCH="${branch} ${state} ${CYAN}${remote}${COLOR_NONE} "
+  BRANCH="${YELLOW}${branch} ${state} ${CYAN}${remote}${COLOR_NONE} "
 }
 
 # Return the prompt symbol to use, colorized based on the return value of the
 # previous command.
 function set_prompt_symbol () {
   if test $1 -eq 0 ; then
-      PROMPT_SYMBOL="λ"
+      PROMPT_SYMBOL="${GREEN}λ${COLOR_NONE}"
   else
       PROMPT_SYMBOL="${LIGHT_RED}λ${COLOR_NONE}"
   fi
@@ -114,12 +114,14 @@ ${PYTHON_VIRTUALENV}${MAGENTA}\W${COLOR_NONE} ${BRANCH}
 ${PROMPT_SYMBOL} "
 }
 
+
 # Tell bash to execute this function just before displaying its prompt.
 PROMPT_COMMAND=set_bash_prompt
 
-alias so-bash='source ~/.bash_profile'
+alias so-bash='source ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
-alias bashrc='vim ~/.bash_profile'
+alias bashrc='vim ~/.bashrc'
+alias goto='cd C:\\Users\\reye8\\Desktop\\Programming'
 
 # Set color alias for mac laptop
 platform="$(uname -s)"
@@ -128,7 +130,7 @@ if [[ ${platform} =~ "Darwin" ]]; then
     alias ls='ls -GH'
 fi
 
+
+
 export PATH=/Users/andersonreyes/Library/Python/2.7/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
-export DATABARN_BUCKET='data-server-bucket'
-export DATABARN_FILES_DIR_KEY='databarn-files'

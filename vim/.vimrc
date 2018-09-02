@@ -4,12 +4,14 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+
 call plug#begin('~/.vim/plugins')
 Plug 'rbgrouleff/bclose.vim'
-Plug 'ervandew/supertab'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
+Plug '/usr/local/opt/fzf'
 Plug 'airblade/vim-gitgutter'
+Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'vim-scripts/vim-auto-save'
