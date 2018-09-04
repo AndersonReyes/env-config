@@ -121,15 +121,20 @@ PROMPT_COMMAND=set_bash_prompt
 alias so-bash='source ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
-alias goto='cd C:\\Users\\reye8\\Desktop\\Programming'
-
+alias goto='cd ~/Projects'
 # Set color alias for mac laptop
 platform="$(uname -s)"
 
+
 if [[ ${platform} =~ "Darwin" ]]; then
     alias ls='ls -GH'
+    alias goto='cd ~/projects'
 fi
 
+
+#if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    #source /etc/profile.d/vte.sh
+#fi
 
 
 export PATH=/Users/andersonreyes/Library/Python/2.7/bin:$PATH

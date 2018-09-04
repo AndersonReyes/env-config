@@ -7,6 +7,7 @@ endif
 
 call plug#begin('~/.vim/plugins')
 Plug 'rbgrouleff/bclose.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug '/usr/local/opt/fzf'
@@ -24,9 +25,8 @@ syntax on
 set t_Co=256
 set termguicolors
 set background=dark
-colorscheme gruvbox
-"highlight Normal ctermbg=None
-"highlight LineNr ctermfg=250 ctermbg=None
+colorscheme dracula
+hi Normal guifg=#f8f8f2 guibg=#1e1f29 gui=NONE
 
 
 let mapleader=" "
