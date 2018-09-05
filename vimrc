@@ -7,6 +7,7 @@ endif
 
 call plug#begin('~/.vim/plugins')
 Plug 'rbgrouleff/bclose.vim'
+Plug 'ervandew/supertab'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
@@ -26,8 +27,7 @@ set t_Co=256
 set termguicolors
 set background=dark
 colorscheme dracula
-hi Normal guifg=#f8f8f2 guibg=#1e1f29 gui=NONE
-
+hi Normal ctermbg=None guifg=#f8f8f2 guibg=#1e1f29 gui=NONE
 
 let mapleader=" "
 :map <leader>q :let @/=""<CR>
@@ -106,18 +106,19 @@ set laststatus=2
 set statusline=
 set statusline+=%#Function#\ \"%f\"
 set statusline+=%#Statement#\ #%n
-set statusline+=%=
 set statusline+=%#Identifier#\ %p%%
 set statusline+=%#Number#\ %l:%c
-set statusline+=%#Constant#%m
-set statusline+=%#String#\ %{fugitive#head(7)}
+set statusline+=%#DraculaOrange#\ %m%y
+set statusline+=%#DraculaCyan#\ L%L
+set statusline+=%#DraculaYellow#\ branch:%{fugitive#head(7)}
+set statusline+=%=
 set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
 
 " set auto close filenames
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js, *.py'
 " filenames like *.xml, *.xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx, *.php, *.js'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx, *.php, *.js, *.py'
 " Autosave
 let g:auto_save = 1  " enable AutoSave on Vim startup"
 let g:auto_save_silent = 1
