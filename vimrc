@@ -8,12 +8,10 @@ endif
 call plug#begin('~/.vim/plugins')
 Plug 'rbgrouleff/bclose.vim'
 Plug 'ervandew/supertab'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'tpope/vim-fugitive'
-Plug '/usr/local/opt/fzf'
 Plug 'airblade/vim-gitgutter'
-Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'vim-scripts/vim-auto-save'
@@ -25,9 +23,9 @@ filetype on
 syntax on
 set t_Co=256
 set termguicolors
-set background=dark
-colorscheme dracula
-hi Normal ctermbg=None guifg=#f8f8f2 guibg=#1e1f29 gui=NONE
+set background=light
+colorscheme PaperColor
+"hi Normal ctermbg=None guifg=#f8f8f2 guibg=#1e1f29 gui=NONE
 
 let mapleader=" "
 :map <leader>q :let @/=""<CR>
@@ -104,13 +102,13 @@ set encoding=utf-8
 
 set laststatus=2
 set statusline=
-set statusline+=%#Function#\ \"%f\"
+set statusline+=%#Boolean#\ \"%f\"
 set statusline+=%#Statement#\ #%n
 set statusline+=%#Identifier#\ %p%%
 set statusline+=%#Number#\ %l:%c
-set statusline+=%#DraculaOrange#\ %m%y
-set statusline+=%#DraculaCyan#\ L%L
-set statusline+=%#DraculaYellow#\ branch:%{fugitive#head(7)}
+set statusline+=%#String#\ %m%y
+set statusline+=%#Exception#\ %LL
+set statusline+=%#Operator#\ {%{fugitive#head(7)}}
 set statusline+=%=
 set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
 

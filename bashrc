@@ -67,10 +67,10 @@ function set_git_branch {
   fi
 
   # Get the name of the branch.
-  branch="$(git branch 2>/dev/null | grep '^*' | cut -c 2-)"
+  branch="$(git branch 2>/dev/null | grep '^*' | cut -c 3-)"
 
   # Set the final branch string.
-  BRANCH="${YELLOW}${branch} ${state} ${CYAN}${remote}${COLOR_NONE} "
+  BRANCH="${YELLOW}{${branch}} ${state} ${CYAN}${remote}${COLOR_NONE} "
 }
 
 # Return the prompt symbol to use, colorized based on the return value of the
