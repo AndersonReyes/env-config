@@ -9,7 +9,6 @@ call plug#begin('~/.vim/plugins')
 Plug 'rbgrouleff/bclose.vim'
 Plug 'ervandew/supertab'
 Plug 'morhetz/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
@@ -23,8 +22,8 @@ filetype on
 syntax on
 set t_Co=256
 set termguicolors
-set background=light
-colorscheme PaperColor
+set background=dark
+colorscheme gruvbox
 "hi Normal ctermbg=None guifg=#f8f8f2 guibg=#1e1f29 gui=NONE
 
 let mapleader=" "
@@ -129,5 +128,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_rust_checkers = ['cargo']
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = "--ignore=E265,E266,F401"

@@ -110,7 +110,7 @@ function set_bash_prompt () {
 
   # Set the bash prompt variable.
   PS1="
-${PYTHON_VIRTUALENV}${MAGENTA}\W${COLOR_NONE} ${BRANCH}
+${MAGENTA}\W${COLOR_NONE} ${PYTHON_VIRTUALENV}${BRANCH}
 ${PROMPT_SYMBOL} "
 }
 
@@ -139,3 +139,5 @@ fi
 
 export PATH=/Users/andersonreyes/Library/Python/2.7/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
+export VISUAL=vim
+export EDITOR="$VISUAL"
