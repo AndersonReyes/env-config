@@ -118,6 +118,11 @@ ${PROMPT_SYMBOL} "
 # Tell bash to execute this function just before displaying its prompt.
 PROMPT_COMMAND=set_bash_prompt
 
+activate() {
+    source "$1/bin/activate"
+}
+
+
 alias so-bash='source ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
@@ -141,3 +146,4 @@ export PATH=/Users/andersonreyes/Library/Python/2.7/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 export VISUAL=vim
 export EDITOR="$VISUAL"
+

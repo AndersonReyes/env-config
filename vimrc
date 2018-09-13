@@ -7,6 +7,7 @@ endif
 
 call plug#begin('~/.vim/plugins')
 Plug 'rbgrouleff/bclose.vim'
+Plug 'vim-python/python-syntax'
 Plug 'ervandew/supertab'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
@@ -24,7 +25,6 @@ set t_Co=256
 set termguicolors
 set background=dark
 colorscheme gruvbox
-"hi Normal ctermbg=None guifg=#f8f8f2 guibg=#1e1f29 gui=NONE
 
 let mapleader=" "
 :map <leader>q :let @/=""<CR>
@@ -39,6 +39,7 @@ nnoremap <up> <C-w><up>
 nnoremap <down> <C-w><down>
 nnoremap <CR> G
 nnoremap <S-Tab> <<
+nnoremap <Tab> >>
 noremap h <left>
 noremap j <right>
 noremap k <down>
@@ -131,3 +132,5 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_rust_checkers = ['cargo']
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = "--ignore=E265,E266,F401"
+
+let g:python_highlight_all = 1
