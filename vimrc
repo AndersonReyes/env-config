@@ -108,7 +108,7 @@ set statusline+=%#Identifier#\ %p%%
 set statusline+=%#Number#\ %l:%c
 set statusline+=%#String#\ %m[%Y]
 set statusline+=%#Exception#\ %LL
-set statusline+=%#Operator#\ {%{fugitive#head(7)}}
+set statusline+=%#Gruvboxyellow#\ {%{fugitive#head(7)}}
 set statusline+=%=
 set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
 
