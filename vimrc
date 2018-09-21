@@ -17,6 +17,7 @@ Plug 'alvan/vim-closetag'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdcommenter'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 filetype on
@@ -131,6 +132,5 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_rust_checkers = ['cargo']
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = "--ignore=E265,E266,F401"
 
 let g:python_highlight_all = 1
