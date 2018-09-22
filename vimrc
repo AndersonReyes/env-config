@@ -7,17 +7,18 @@ endif
 
 call plug#begin('~/.vim/plugins')
 Plug 'rbgrouleff/bclose.vim'
+Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
+Plug 'ap/vim-buftabline'
+Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ervandew/supertab'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdcommenter'
-Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 filetype on
@@ -132,5 +133,9 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_rust_checkers = ['cargo']
 let g:syntastic_python_checkers = ['flake8']
-
+let g:syntastic_cpp_include_dirs = ['./src', './googletest/include']
+let g:syntastic_cpp_auto_refresh_includes = 1
 let g:python_highlight_all = 1
+
+
+let g:cpp_class_decl_highlight = 1
