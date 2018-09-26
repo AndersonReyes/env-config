@@ -7,11 +7,11 @@ endif
 
 call plug#begin('~/.vim/plugins')
 Plug 'rbgrouleff/bclose.vim'
+Plug 'Valloric/YouCompleteMe'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
-Plug 'ap/vim-buftabline'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'ervandew/supertab'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
@@ -26,7 +26,7 @@ syntax on
 set t_Co=256
 set termguicolors
 set background=dark
-colorscheme gruvbox
+colorscheme dracula
 
 let mapleader=" "
 :map <leader>q :let @/=""<CR>
@@ -78,7 +78,7 @@ set history=100
 filetype indent on
 set wrap
 set tabstop=4
-set shiftwidth=4
+
 set expandtab
 set smartindent
 set autoindent
@@ -110,7 +110,7 @@ set statusline+=%#Identifier#\ %p%%
 set statusline+=%#Number#\ %l:%c
 set statusline+=%#String#\ %m[%Y]
 set statusline+=%#Exception#\ %LL
-set statusline+=%#Gruvboxyellow#\ {%{fugitive#head(7)}}
+set statusline+=%#DraculaGreen#\ {%{fugitive#head(7)}}
 set statusline+=%=
 set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
 
@@ -124,9 +124,6 @@ let g:auto_save = 1  " enable AutoSave on Vim startup"
 let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 0
 let g:auto_save_write_all = 1
-
-
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -136,6 +133,4 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_cpp_include_dirs = ['./src', './googletest/include']
 let g:syntastic_cpp_auto_refresh_includes = 1
 let g:python_highlight_all = 1
-
-
 let g:cpp_class_decl_highlight = 1
