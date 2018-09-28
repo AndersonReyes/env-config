@@ -26,7 +26,7 @@ syntax on
 set t_Co=256
 set termguicolors
 set background=dark
-colorscheme dracula
+colorscheme gruvbox
 
 let mapleader=" "
 :map <leader>q :let @/=""<CR>
@@ -106,11 +106,9 @@ set laststatus=2
 set statusline=
 set statusline+=%#Boolean#\ \"%f\"
 set statusline+=%#Statement#\ #%n
-set statusline+=%#Identifier#\ %p%%
 set statusline+=%#Number#\ %l:%c
 set statusline+=%#String#\ %m[%Y]
-set statusline+=%#Exception#\ %LL
-set statusline+=%#DraculaGreen#\ {%{fugitive#head(7)}}
+set statusline+=%#GruvboxYellow#\ {%{fugitive#head(7)}}
 set statusline+=%=
 set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
 
@@ -134,3 +132,4 @@ let g:syntastic_cpp_include_dirs = ['./src', './googletest/include']
 let g:syntastic_cpp_auto_refresh_includes = 1
 let g:python_highlight_all = 1
 let g:cpp_class_decl_highlight = 1
+let g:ycm_autoclose_preview_window_after_completion = 1

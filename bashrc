@@ -143,4 +143,5 @@ fi
 export PATH=/Users/andersonreyes/Library/Python/2.7/bin:$PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 export VISUAL=vim
+eval $(thefuck --alias)
 export EDITOR="$VISUAL"
