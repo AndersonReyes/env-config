@@ -7,28 +7,30 @@ endif
 
 call plug#begin('~/.vim/plugins')
 Plug 'rbgrouleff/bclose.vim'
-Plug 'Valloric/YouCompleteMe'
-Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'morhetz/gruvbox'
-Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
-Plug 'alvan/vim-closetag'
+Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/vim-auto-save'
-Plug 'vim-syntastic/syntastic'
 Plug 'scrooloose/nerdcommenter'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'sheerun/vim-polyglot'
+Plug 'Valloric/YouCompleteMe'
+Plug 'vim-syntastic/syntastic'
+Plug 'nvie/vim-flake8'
+Plug 'kien/ctrlp.vim'
 call plug#end()
 
+let python_highlight_all=1
 filetype on
 syntax on
 set t_Co=256
 set termguicolors
+colorscheme onehalfdark
 set background=dark
-colorscheme gruvbox
 
 let mapleader=" "
+map <leader>n :NERDTreeToggle<CR>
 :map <leader>q :let @/=""<CR>
 :map <leader>g :bn<CR>
 :map <leader>v :bp<CR>
@@ -42,15 +44,6 @@ nnoremap <down> <C-w><down>
 nnoremap <CR> G
 nnoremap <S-Tab> <<
 nnoremap <Tab> >>
-noremap h <left>
-noremap j <right>
-noremap k <down>
-noremap l <up>
-" Moving lines up and down"
-nnoremap <C-k> :m .+1<CR>==
-nnoremap <C-l> :m .-2<CR>==
-nnoremap + o<Esc>k
-nnoremap - O<Esc>l
 
 " Resizing buffers"
 nnoremap <leader><left> <C-W>5<<CR>
@@ -59,11 +52,6 @@ nnoremap <leader><down> <C-W>5+<CR>
 nnoremap <leader><up> <C-W>5-<CR>
 
 inoremap <S-Tab> <C-d>
-inoremap <C-k> <Esc>:m .+1<CR>==gi
-inoremap <C-l> <Esc>:m .-2<CR>==gi
-
-vnoremap <C-k> :m '>+1<CR>gv=gv
-vnoremap <C-l> :m '<-2<CR>gv=gv
 
 augroup CursorLineOnlyActiveWindow
     autocmd!
@@ -78,6 +66,7 @@ set history=100
 filetype indent on
 set wrap
 set tabstop=4
+set shiftwidth=4
 
 set expandtab
 set smartindent
@@ -85,8 +74,6 @@ set autoindent
 set backspace=indent,eol,start
 set ttyfast
 set showmode
-set showcmd
-set autoread
 set noswapfile
 
 " auto remove unncesary white space
@@ -104,32 +91,15 @@ set encoding=utf-8
 
 set laststatus=2
 set statusline=
-set statusline+=%#Boolean#\ \"%f\"
-set statusline+=%#Statement#\ #%n
-set statusline+=%#Number#\ %l:%c
-set statusline+=%#String#\ %m[%Y]
-set statusline+=%#GruvboxYellow#\ {%{fugitive#head(7)}}
+set statusline+=\ col:%c
+set statusline+=\ %f
+set statusline+=\ %m
 set statusline+=%=
-set statusline+=%#warningmsg#\ %{SyntasticStatuslineFlag()}
+set statusline+=\ Buffer[%n]
 
-" set auto close filenames
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.php, *.js, *.py'
-" filenames like *.xml, *.xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx, *.php, *.js, *.py'
 " Autosave
 let g:auto_save = 1  " enable AutoSave on Vim startup"
 let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 0
 let g:auto_save_write_all = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_rust_checkers = ['cargo']
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_cpp_include_dirs = ['./src', './googletest/include']
-let g:syntastic_cpp_auto_refresh_includes = 1
-let g:python_highlight_all = 1
-let g:cpp_class_decl_highlight = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_completion=1
