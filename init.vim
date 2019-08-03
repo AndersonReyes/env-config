@@ -1,13 +1,13 @@
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 
-call plug#begin('~/.vim/plugins')
+call plug#begin()
 Plug 'rbgrouleff/bclose.vim'
-Plug 'AndersonReyes/vim-firewatch'
+Plug 'arcticicestudio/nord-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -15,8 +15,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
-Plug 'Valloric/YouCompleteMe'
-Plug 'vim-syntastic/syntastic'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-jedi'
+Plug 'ncm2/ncm2-racer'
 call plug#end()
 
 let python_highlight_all=1
@@ -25,14 +28,14 @@ syntax on
 set t_Co=256
 set termguicolors
 set background=dark
-colorscheme andersontheme
+colorscheme nord
 
 let mapleader=" "
 map <leader>n :NERDTreeToggle<CR>
 :map <leader>q :let @/=""<CR>
 :map <leader>g :bn<CR>
-:map <leader>v :bp<CR>
-map <F8> :so ~/.vimrc<CR>
+    :map <leader>v :bp<CR>
+map <F8> :so ~/.config/nvim/init.vim<CR>
 map <F7> gg=G
 :imap jj <ESC>
 nnoremap <right> <C-w><right>
@@ -86,13 +89,11 @@ set showmatch
 set number
 set relativenumber
 set encoding=utf-8
-
 set laststatus=2
 set statusline=
 set statusline+=\ col:%c
 set statusline+=\ %f
 set statusline+=\ %m
-set statusline+=%=
 set statusline+=\ Buffer[%n]
 
 " Autosave
@@ -100,4 +101,14 @@ let g:auto_save = 1  " enable AutoSave on Vim startup"
 let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 0
 let g:auto_save_write_all = 1
-let g:ycm_autoclose_preview_window_after_completion=1
+
+" ncm2
+let g:python3_host_prog = "/Users/andersonreyes/.virtualenvs/neovim3/bin/python"
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeAutoDeleteBuffer = 1
