@@ -6,11 +6,16 @@ endif
 
 call plug#begin()
 Plug 'scrooloose/nerdtree'
-Plug 'yorickpeterse/happy_hacking.vim'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'ervandew/supertab'
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'vim-python/python-syntax'
+Plug 'morhetz/gruvbox'
+Plug 'hashivim/vim-terraform'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
 filetype on
@@ -18,7 +23,7 @@ syntax on
 set background=dark
 set t_Co=256
 set termguicolors
-colorscheme happy_hacking
+colorscheme codedark
 
 let mapleader=" "
 map <leader>n :NERDTreeToggle<CR>
@@ -42,28 +47,18 @@ augroup CursorLineOnlyActiveWindow
     autocmd WinLeave * setlocal nocursorline
 augroup END
 
-
 " Tabs
 set tabstop=4
-set softtabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
-set fileformat=unix
+set smartindent
 
-au BufNewFile,BufRead *.js, *.html, *.css, *.scala
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 set cursorline
 set nocompatible
 set hidden
 set history=100
-filetype indent on
 set wrap
-set smartindent
 set backspace=indent,eol,start
 set ttyfast
 set showmode
@@ -78,10 +73,9 @@ set showmatch
 set relativenumber
 set encoding=utf-8
 set laststatus=2
-set statusline=
-set statusline+=\ col:%c
-set statusline+=\ #%n\ [%Y]
-set statusline+=\ %f
+
+" yaml config
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:> foldmethod=indent nofoldenable
 
 " Autosave
 let g:auto_save = 1  " enable AutoSave on Vim startup"
@@ -93,3 +87,5 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeIgnore = ['\.pyc$']
+
+let g:python_highlight_all = 1
