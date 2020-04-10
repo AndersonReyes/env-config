@@ -1,3 +1,7 @@
+function setup_zsh {
+    git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+    ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+}
 
 [ -f $HOME/.pym-envars ] && source $HOME/.pym-envars
 
@@ -7,10 +11,15 @@ export PATH=/usr/local/opt/mysql@5.6/bin:$HOME/bin:/usr/local/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 export VISUAL=vim
 export EDITOR="$VISUAL"
-export PATH=$PATH:$HOME/.cargo/bin
-export KUBE_EDITOR=vim
 
-source <(kubectl completion zsh)
+if command -v cargo 2>/dev/null; then
+    export PATH=$PATH:$(command -v cargo)
+fi
+
+if command -v kubectl 2>/dev/null; then
+    export KUBE_EDITOR=vim
+    source <(kubectl completion zsh)
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -122,57 +131,65 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
+if command -v conda 2>/dev/null; then
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/andersonreyes/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/andersonreyes/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/andersonreyes/miniconda3/etc/profile.d/conda.sh"
+    __conda_setup="$('/Users/andersonreyes/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
     else
-        export PATH="/Users/andersonreyes/miniconda3/bin:$PATH"
+        if [ -f "/Users/andersonreyes/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/andersonreyes/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/andersonreyes/miniconda3/bin:$PATH"
+        fi
     fi
-fi
-unset __conda_setup
+    unset __conda_setup
 # <<< conda initialize <<<
+    conda config --set changeps1 false
+    conda config --set auto_activate_base false
+fi
 
 
-export PATH="/usr/local/opt/terraform@0.11/bin:$PATH"
+if command -v terraform 2>/dev/null; then
+    export PATH="/usr/local/opt/terraform@0.11/bin:$PATH"
+fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if command -v fzf 2>/dev/null; then
+    source ~/.fzf.zsh
 
-# Functions
-# # fbr - checkout git branch (including remote branches)
-fbr() {
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
+    # fbr - checkout git branch (including remote branches)
+    fbr() {
+      local branches branch
+      branches=$(git branch --all | grep -v HEAD) &&
+      branch=$(echo "$branches" |
+               fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+      git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+    }
 
-
-cd() {
-    if [[ "$#" != 0 ]]; then
-        builtin cd "$@";
-        return
-    fi
-    while true; do
-        local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
-        local dir="$(printf '%s\n' "${lsd[@]}" |
-            fzf --reverse --preview '
-                __cd_nxt="$(echo {})";
-                __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
-                echo $__cd_path;
-                echo;
-                ls -p --color=always "${__cd_path}";
-        ')"
-        [[ ${#dir} != 0 ]] || return 0
-        builtin cd "$dir" &> /dev/null
-    done
-}
+    # cd using fzf
+    cd() {
+        if [[ "$#" != 0 ]]; then
+            builtin cd "$@";
+            return
+        fi
+        while true; do
+            local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
+            local dir="$(printf '%s\n' "${lsd[@]}" |
+                fzf --reverse --preview '
+                    __cd_nxt="$(echo {})";
+                    __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
+                    echo $__cd_path;
+                    echo;
+                    ls -p --color=always "${__cd_path}";
+            ')"
+            [[ ${#dir} != 0 ]] || return 0
+            builtin cd "$dir" &> /dev/null
+        done
+    }
+fi
 
 # auto start tmux
-if [ "$TMUX" = "" ]; then tmux; fi
+if command -v tmux 2>/dev/null; then
+    if [ "$TMUX" = "" ]; then tmux; fi
+fi

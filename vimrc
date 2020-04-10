@@ -12,7 +12,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-python/python-syntax'
-Plug 'morhetz/gruvbox'
+Plug 'derekwyatt/vim-scala'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rbgrouleff/bclose.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'ekalinin/Dockerfile.vim'
