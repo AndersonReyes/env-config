@@ -8,10 +8,8 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'ervandew/supertab'
-Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'vim-python/python-syntax'
 Plug 'derekwyatt/vim-scala'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rbgrouleff/bclose.vim'
@@ -76,8 +74,9 @@ set relativenumber
 set encoding=utf-8
 set laststatus=2
 
-" yaml config
+au BufRead,BufNewFile *.sbt           set filetype=scala
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:> foldmethod=indent nofoldenable
+autocmd FileType scala setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:> foldmethod=indent nofoldenable
 
 " Autosave
 let g:auto_save = 1  " enable AutoSave on Vim startup"
