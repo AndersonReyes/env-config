@@ -15,7 +15,6 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rbgrouleff/bclose.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
 filetype on
@@ -23,7 +22,9 @@ syntax on
 set background=dark
 set t_Co=256
 set termguicolors
-colorscheme codedark
+
+highlight LineNr guifg=gray
+highlight CursorLineNr guibg=NONE guifg=#ffffff
 
 let mapleader=" "
 map <leader>n :NERDTreeToggle<CR>
@@ -54,7 +55,9 @@ set expandtab
 set autoindent
 set smartindent
 
-set cursorline
+" set cursorline
+set ruler
+set complete=.,b
 set nocompatible
 set hidden
 set history=100
@@ -72,7 +75,7 @@ set incsearch
 set showmatch
 set relativenumber
 set encoding=utf-8
-set laststatus=2
+set laststatus=0
 
 au BufRead,BufNewFile *.sbt           set filetype=scala
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:> foldmethod=indent nofoldenable
@@ -88,5 +91,3 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeIgnore = ['\.pyc$']
-
-let g:python_highlight_all = 1
