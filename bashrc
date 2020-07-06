@@ -1,5 +1,4 @@
-[ -f ~/.pym-envars ] && source ~/.pym-envars
-
+export HOMEBREW_NO_AUTO_UPDATE=1
 export PS1='\[\e[32m\]\W/ \[\e[m\]$ '
 export TERM="xterm-256color"
 export PATH=$HOME/.cargo/bin:$HOME/bin:/usr/local/bin:$HOME/miniconda3/bin:$PATH
@@ -27,3 +26,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+[ -f ~/.pym-envars ] && source ~/.pym-envars
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
