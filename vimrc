@@ -14,6 +14,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rbgrouleff/bclose.vim'
 Plug 'hashivim/vim-terraform'
+Plug 'AndersonReyes/vim-ipython-theme'
 Plug 'ekalinin/Dockerfile.vim'
 call plug#end()
 
