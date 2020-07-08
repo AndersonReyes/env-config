@@ -29,3 +29,10 @@ unset __conda_setup
 
 [ -f ~/.pym-envars ] && source ~/.pym-envars
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+ssm_get_id () {
+    local tag=$1
+    local filters="[{\"Key\":\"AWS:Tag.Key\",\"Values\":[\"Name\"],\"Type\":\"Equal\"},{\"Key\":\"AWS:Tag.Value\",\"Values\":[\"$tag\"],\"Type\":\"Equal\"}]"
+    aws ssm get-inventory --filters $filters  --output json | jq -r '.Entities[] | {id: .Id}'
+}

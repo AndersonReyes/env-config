@@ -1,7 +1,7 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim  --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim  --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin()
@@ -17,11 +17,19 @@ Plug 'hashivim/vim-terraform'
 Plug 'ekalinin/Dockerfile.vim'
 call plug#end()
 
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 filetype on
 syntax on
 set background=dark
 set t_Co=256
 set termguicolors
+colorscheme ipython
 
 highlight LineNr guifg=gray
 highlight CursorLineNr guibg=NONE guifg=#ffffff
