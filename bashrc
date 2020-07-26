@@ -12,7 +12,6 @@ export  DOCKER_BUILDKIT=1
 export  COMPOSE_DOCKER_CLI_BUILD=1
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-source <(kubectl completion bash)
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -40,6 +39,5 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 [ -f ~/.pym-envars ] && source ~/.pym-envars
-eval "$(thefuck --alias)"
-
-set -o vi
+type -P fuck &> /dev/null/ && eval "$(thefuck --alias)"
+type -P kubectl &> /dev/null && source <(kubectl completion bash)
