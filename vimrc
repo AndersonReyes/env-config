@@ -14,8 +14,9 @@ Plug 'derekwyatt/vim-scala'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rbgrouleff/bclose.vim'
 Plug 'hashivim/vim-terraform'
-Plug 'AndersonReyes/vim-ipython-theme'
+Plug 'dracula/vim'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'AndersonReyes/vim-ipython-theme'
 call plug#end()
 
 function! SynStack()
@@ -30,10 +31,8 @@ syntax on
 set background=dark
 set t_Co=256
 set termguicolors
-colorscheme ipython
 
-highlight LineNr guifg=gray
-highlight CursorLineNr guibg=NONE guifg=#ffffff
+colorscheme ipython
 
 let mapleader=" "
 map <leader>n :NERDTreeToggle<CR>
@@ -66,7 +65,7 @@ set smartindent
 
 " set cursorline
 set ruler
-set complete=.,b
+set complete=.,b,w
 set nocompatible
 set hidden
 set history=100
