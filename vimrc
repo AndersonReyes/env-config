@@ -5,44 +5,39 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
-Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'ervandew/supertab'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'derekwyatt/vim-scala'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rbgrouleff/bclose.vim'
-Plug 'hashivim/vim-terraform'
-Plug 'dracula/vim'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'AndersonReyes/vim-ipython-theme'
+Plug 'morhetz/gruvbox'
+Plug 'preservim/nerdtree'
 call plug#end()
 
 function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
 filetype on
 syntax on
+
 set background=dark
 set t_Co=256
 set termguicolors
+colorscheme gruvbox
 
-colorscheme ipython
 
 let mapleader=" "
-map <leader>n :NERDTreeToggle<CR>
-map <leader>t :NERDTreeFind<CR>
 :map <leader>q :let @/=""<CR>
 :map <leader>g :bn<CR>
 :map <leader>v :bp<CR>
 map <F8> :so ~/.vimrc<CR>
 map <F7> gg=G
 :imap jj <ESC>
+map <C-n> :NERDTreeToggle<CR>
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -83,11 +78,6 @@ set incsearch
 set showmatch
 set relativenumber
 set encoding=utf-8
-set laststatus=0
-
-au BufRead,BufNewFile *.sbt           set filetype=scala
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:> foldmethod=indent nofoldenable
-autocmd FileType scala setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:> foldmethod=indent nofoldenable
 
 " Autosave
 let g:auto_save = 1  " enable AutoSave on Vim startup"
@@ -95,7 +85,11 @@ let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 0
 let g:auto_save_write_all = 1
 
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeIgnore = ['\.pyc$']
+set laststatus=2
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%#LineNr#
+set statusline+=\ %F
+set statusline+=%=
+set statusline+=\ %y
+set statusline+=\ %l:%c
