@@ -71,6 +71,8 @@ set showmode
 set noswapfile
 " auto remove unncesary white space
 autocmd BufWritePre * :%s/\s\+$//e
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
 " search highlight
 set hlsearch
 set incsearch
