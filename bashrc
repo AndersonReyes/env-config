@@ -1,43 +1,57 @@
 export HOMEBREW_NO_AUTO_UPDATE=1
-export PS1='\[\e[32m\]\W/ \[\e[m\]$ '
 export TERM="xterm-256color"
-export PATH=$HOME/.cargo/bin:$HOME/bin:$PATH
 export VISUAL=vim
 export EDITOR="$VISUAL"
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=/home/anderson/golib
-export PATH=$PATH:$GOPATH/bin
-export GOPATH=$GOPATH:/home/anderson/Projects/golang
-export  DOCKER_BUILDKIT=1
-export  COMPOSE_DOCKER_CLI_BUILD=1
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
 
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-
-ssm_get_id () {
-    local tag=$1
-    local filters="[{\"Key\":\"AWS:Tag.Key\",\"Values\":[\"Name\"],\"Type\":\"Equal\"},{\"Key\":\"AWS:Tag.Value\",\"Values\":[\"$tag\"],\"Type\":\"Equal\"}]"
-    aws ssm get-inventory --filters $filters  --output json | jq -r '.Entities[] | {id: .Id}'
+# get current branch in git repo
+function parse_git_branch() {
+        BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+        if [ ! "${BRANCH}" == "" ]
+        then
+                STAT=`parse_git_dirty`
+                echo " [${BRANCH}${STAT}]"
+        else
+                echo ""
+        fi
 }
 
+# get current status of git repo
+function parse_git_dirty {
+        status=`git status 2>&1 | tee`
+        dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+        untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+        ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+        newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+        renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+        deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+        bits=''
+        if [ "${renamed}" == "0" ]; then
+                bits="!"
+        fi
+        if [ "${ahead}" == "0" ]; then
+                bits="!"
+        fi
+        if [ "${newfile}" == "0" ]; then
+                bits="!"
+        fi
+        if [ "${untracked}" == "0" ]; then
+                bits="!"
+        fi
+        if [ "${deleted}" == "0" ]; then
+                bits="!"
+        fi
+        if [ "${dirty}" == "0" ]; then
+                bits="!"
+        fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/andersonreyes/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/andersonreyes/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/andersonreyes/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/andersonreyes/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-[ -f ~/.pym-envars ] && source ~/.pym-envars
-type -P fuck &> /dev/null/ && eval "$(thefuck --alias)"
-type -P kubectl &> /dev/null && source <(kubectl completion bash)
+        if [ ! "${bits}" == "" ]; then
+                echo "${bits}"
+        else
+                echo ""
+        fi
+}
