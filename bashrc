@@ -56,4 +56,6 @@ function parse_git_dirty {
         fi
 }
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[-f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PS1="\W\`parse_git_branch\` 🍺 "
