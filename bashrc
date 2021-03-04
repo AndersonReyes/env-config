@@ -55,3 +55,5 @@ function parse_git_dirty {
                 echo ""
         fi
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
