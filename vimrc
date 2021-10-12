@@ -5,12 +5,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
-Plug 'vim-scripts/vim-auto-save'
 Plug 'ervandew/supertab'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'andreypopp/vim-colors-plain'
+Plug 'morhetz/gruvbox'
 Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -21,7 +20,7 @@ syntax on
 set background=dark
 set t_Co=256
 set termguicolors
-colorscheme plain
+colorscheme gruvbox
 
 let mapleader=" "
 :map <leader>q :let @/=""<CR>
@@ -78,12 +77,6 @@ set relativenumber
 set encoding=utf-8
 set paste
 
-" Autosave
-let g:auto_save = 1  " enable AutoSave on Vim startup"
-let g:auto_save_silent = 1
-let g:auto_save_in_insert_mode = 0
-let g:auto_save_write_all = 1
-
 function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
@@ -102,3 +95,4 @@ set statusline+=\ %F
 set statusline+=%=
 set statusline+=\ %y
 set statusline+=\ %l:%c
+
