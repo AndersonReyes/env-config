@@ -1,50 +1,70 @@
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-    silent !curl -fLo ~/.config/nvim/autoload/plug.vim  --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
 
-call plug#begin()
-Plug 'ervandew/supertab'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'rbgrouleff/bclose.vim'
-Plug 'morhetz/gruvbox'
-Plug 'rust-lang/rust.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-call plug#end()
+lua require('plugins')
 
-colorscheme gruvbox
+" If installed using Homebrew
+set rtp+=/usr/local/bin/fzf
+
+set showmatch               " show matching
+set ignorecase              " case insensitive
+set mouse=v                 " middle-click paste with
+set hlsearch                " highlight search
+set incsearch               " incremental search
+set tabstop=2               " number of columns occupied by a tab
+set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
+set expandtab               " converts tabs to white space
+set shiftwidth=2            " width for autoindents
+set autoindent              " indent a new line the same amount as the line just typed
+set number                  " add line numbers
+set wildmode=longest,list   " get bash-like tab completions
+filetype plugin indent on   "allow auto-indenting depending on file type
+syntax on                   " syntax highlighting
+set mouse=a                 " enable mouse click
+filetype plugin on
+set cursorline              " highlight current cursorline
+set ttyfast                 " Speed up scrolling in Vim
+set noswapfile            " disable creating swap file
+set backupdir=~/.cache/vim " Directory to store backup files.
+
+syntax off
+set background=light
+" colorscheme solarized
 
 let mapleader=" "
 :map <leader>q :let @/=""<CR>
 :map <leader>g :bn<CR>
 :map <leader>v :bp<CR>
-map <F8> :so ~/.config/nvim/init.vim<CR>
-map <F7> gg=G
-imap jj <ESC>
 
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-nnoremap <CR> G
+" Press i to enter insert mode, and ii to exit insert mode.
+:inoremap jk <Esc>
 
-augroup CursorLineOnlyActiveWindow
-    autocmd!
-    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
-augroup END
+" Scala
+autocmd FileType json syntax match Comment +\/\/.\+$+
+" Help Vim recognize *.sbt and *.sc as Scala files
+au BufRead,BufNewFile *.sbt,*.sc set filetype=scala
 
-set complete=.,b,w,i
-set noswapfile
-set showmatch
-set number
 
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" COC installs
-" :CocInstall coc-rls
-" :COCInstall coc-rust-analyzer
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ }
+
+
+map <leader>tn :tabnew<cr>
+map <leader>t<leader> :tabnext
+map <leader>tm :tabmove
+map <leader>tc :tabclose<cr>
+map <leader>to :tabonly<cr>
