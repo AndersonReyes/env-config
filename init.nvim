@@ -1,4 +1,3 @@
-
 lua require('plugins')
 
 " If installed using Homebrew
@@ -17,7 +16,6 @@ set autoindent              " indent a new line the same amount as the line just
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
 filetype plugin indent on   "allow auto-indenting depending on file type
-syntax on                   " syntax highlighting
 set mouse=a                 " enable mouse click
 filetype plugin on
 set cursorline              " highlight current cursorline
@@ -25,9 +23,8 @@ set ttyfast                 " Speed up scrolling in Vim
 set noswapfile            " disable creating swap file
 set backupdir=~/.cache/vim " Directory to store backup files.
 
+set background=dark
 syntax off
-set background=light
-" colorscheme solarized
 
 let mapleader=" "
 :map <leader>q :let @/=""<CR>
@@ -57,14 +54,3 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ }
-
-
-map <leader>tn :tabnew<cr>
-map <leader>t<leader> :tabnext
-map <leader>tm :tabmove
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
