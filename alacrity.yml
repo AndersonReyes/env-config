@@ -7,40 +7,6 @@ shell:
 font:
   size: 13.0
 
-# Colors (custom symple)
-colors:
-  # Default colors
-  primary:
-    background: '#18283C' # base3
-    foreground: '#C1C5BF' # base00
-
-  # Cursor colors
-  cursor:
-    text:   '#fdf6e3' # base3
-    cursor: '#657b83' # base00
-
-  # Normal colors
-  normal:
-    black:   '#073642' # base02
-    red:     '#e4e4dd'
-    blue:    '#C1C5BF'
-    green:   '#C1C5BF'
-    yellow:  '#C1C5BF'
-    magenta: '#C1C5BF'
-    cyan:    '#C1C5BF'
-    white:   '#C1C5BF'
-
-  # Bright colors
-  bright:
-    black:   '#073642' # base02
-    red:     '#e4e4dd'
-    blue:    '#C1C5BF'
-    green:   '#C1C5BF'
-    yellow:  '#C1C5BF'
-    magenta: '#C1C5BF'
-    cyan:    '#C1C5BF'
-    white:   '#C1C5BF'
-
 keybindings:
   - { key: Comma,     mods: Command,      command:
       {program: "sh", args: ["-c","open ~/.config/alacritty/alacritty.yml"]}     }
