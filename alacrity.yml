@@ -1,0 +1,53 @@
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+font:
+  size: 13.0
+
+# Colors (custom symple)
+colors:
+  # Default colors
+  primary:
+    background: '#18283C' # base3
+    foreground: '#C1C5BF' # base00
+
+  # Cursor colors
+  cursor:
+    text:   '#fdf6e3' # base3
+    cursor: '#657b83' # base00
+
+  # Normal colors
+  normal:
+    black:   '#073642' # base02
+    red:     '#e4e4dd'
+    blue:    '#C1C5BF'
+    green:   '#C1C5BF'
+    yellow:  '#C1C5BF'
+    magenta: '#C1C5BF'
+    cyan:    '#C1C5BF'
+    white:   '#C1C5BF'
+
+  # Bright colors
+  bright:
+    black:   '#073642' # base02
+    red:     '#e4e4dd'
+    blue:    '#C1C5BF'
+    green:   '#C1C5BF'
+    yellow:  '#C1C5BF'
+    magenta: '#C1C5BF'
+    cyan:    '#C1C5BF'
+    white:   '#C1C5BF'
+
+keybindings:
+  - { key: Comma,     mods: Command,      command:
+      {program: "sh", args: ["-c","open ~/.config/alacritty/alacritty.yml"]}     }
+  - { key: N,         mods: Command,      action: SpawnNewInstance       }
+  - { key: Space,     mods: Alt,          chars: " "                     }
+  - { key: Back, mods: Super, chars: "\x15" } # delete word/line
+  - { key: Left,     mods: Alt,     chars: "\x1bb"                       } # one word left
+  - { key: Right,    mods: Alt,     chars: "\x1bf"                       } # one word right
+  - { key: Left,     mods: Command, chars: "\x1bOH",   mode: AppCursor   } # Home
+  - { key: Right,    mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
