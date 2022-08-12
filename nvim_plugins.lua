@@ -12,5 +12,5 @@ return require('packer').startup(function(use)
   use "wbthomason/packer.nvim"
   use {'neoclide/coc.nvim', branch = 'release'}
   use 'itchyny/lightline.vim'
-  use 'altercation/vim-colors-solarized'
+  use 'morhetz/gruvbox'
 end)
