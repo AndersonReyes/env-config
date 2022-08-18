@@ -24,7 +24,7 @@ set noswapfile            " disable creating swap file
 set backupdir=~/.cache/vim " Directory to store backup files.
 
 set background=dark
-syntax gruvbox
+colorscheme gruvbox
 
 let mapleader=" "
 :map <leader>q :let @/=""<CR>
