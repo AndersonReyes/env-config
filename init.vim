@@ -31,6 +31,10 @@ let mapleader=" "
 :map <leader>g :bn<CR>
 :map <leader>v :bp<CR>
 
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
 " Press i to enter insert mode, and ii to exit insert mode.
 :inoremap jk <Esc>
 
