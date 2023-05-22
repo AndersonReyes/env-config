@@ -10,8 +10,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'morhetz/gruvbox'
-Plug 'rust-lang/rust.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 filetype on
@@ -23,19 +21,6 @@ set termguicolors
 colorscheme gruvbox
 
 let mapleader=" "
-:map <leader>q :let @/=""<CR>
-:map <leader>g :bn<CR>
-:map <leader>v :bp<CR>
-map <F8> :so ~/.vimrc<CR>
-map <F7> gg=G
-:imap jj <ESC>
-
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-nnoremap <CR> G
-
 augroup CursorLineOnlyActiveWindow
     autocmd!
     autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
@@ -47,7 +32,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
-set smartindent
 
 " set cursorline
 set ruler
@@ -73,26 +57,34 @@ set incsearch
 
 " matching parenthesis
 set showmatch
-set relativenumber
+set number relativenumber
 set encoding=utf-8
-set paste
-
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
+set nopaste
 
 set laststatus=2
 set statusline=
 set statusline+=%#PmenuSel#
-set statusline+=%{StatuslineGit()}
 set statusline+=%#LineNr#
 set statusline+=\ %F
 set statusline+=%=
 set statusline+=\ %y
 set statusline+=\ %l:%c
 
+set rtp+=/usr/local/bin/fzf
+
+:map <leader>q :let @/=""<CR>
+:map <leader>g :bn<CR>
+:map <leader>v :bp<CR>
+map <F8> :so ~/.vimrc<CR>
+map <F7> gg=G
+inoremap <special> jk <ESC>
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <CR> G
+nnoremap <silent><leader>l :Buffers<CR>
+nnoremap <C-s> :w<CR>
+nnoremap <C-f> :Files<CR>
+nnoremap <C-g> :Rg<CR>
