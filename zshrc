@@ -128,15 +128,6 @@ source ~/.fzf.zsh
 export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
 export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
 
-
-function qstyx_init() {
-  NET=$(docker network create --subnet 172.20.0.0/16 qstyx-network)
-	docker run --rm -d -v ~/.config/gcloud/:/.config/gcloud --name toogle \
-		--net qstyx-network --ip 172.20.0.127 \
-		-p 80:80 gcr.io/spotify-datainfra/toogle
-}
-
-
 clean_docker() {
    docker container prune
    docker rmi $(docker images -q)
