@@ -1,0 +1,16 @@
+[[language]]
+name = "python"
+formatter = { command = "ruff", args = ["format", "--line-length", "88", "-"] }
+auto-format = true
+
+[[language]]
+name = "java"
+indent = { tab-width = 4, unit = "    " }
+# formatter = { command = "mvn", args = ["com.spotify.fmt:fmt-maven-plugin:format"] }
+auto-format = false
+
+[[language]]
+name = "scala"
+file-types = ["scala", "sbt"]
+# formatter = {command = "sbt", args = [""]}
+auto-format = false
