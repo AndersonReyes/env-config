@@ -1,11 +1,11 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
@@ -70,9 +70,21 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions virtualenv)
+
+
+plugins=(fzf git virtualenv)
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HISTTIMEFORMAT="%F %T "
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
+export VIRTUAL_ENV_DISABLE_PROMPT=0
 
 source $ZSH/oh-my-zsh.sh
+source <(fzf --zsh)
 
 # User configuration
 
@@ -85,91 +97,20 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-export HOMEBREW_NO_AUTO_UPDATE=1
-export HISTTIMEFORMAT="%F %T "
-export TERM="xterm-256color"
-export VISUAL=code
-export EDITOR="$VISUAL"
-export DOCKER_BUILDKIT=1
-export COMPOSE_DOCKER_CLI_BUILD=1
-export PYENV_VIRTUALENV_DISABLE_PROMPT=0
-export VIRTUAL_ENV_DISABLE_PROMPT=0
-export WORKON_HOME=~/Envs
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
-alias vim=nvim
-alias ls=exa
-
-export GIT_PS1_SHOWDIRTYSTATE=1
-
-alias tmux="TERM=screen-256color-bce tmux"
-
-
-
-source ~/.fzf.zsh
-
-
-export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
-export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
-
-clean_docker() {
-   docker container prune
-   docker rmi $(docker images -q)
-   docker system prune -a
-   docker volume prune
-   docker builder prune -a
-   docker system df
-}
-
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# >>> coursier install directory >>>
-export PATH="$PATH:/Users/andersonr/Library/Application Support/Coursier/bin"
-# <<< coursier install directory <<<
-export PATH="/usr/local/opt/libpq/bin:$PATH"
-export PATH=/Users/andersonr/.local/bin:$PATH
-
-
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-export PATH="/usr/local/opt/node@16/bin:$PATH"
-
-#eval "$(pyenv init --path)"
-#eval "$(pyenv virtualenv-init -)"
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
