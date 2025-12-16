@@ -39,7 +39,7 @@ config.wsl_domains = {
   },
 }
 
-config.default_domain = "WSL:DEFAULT"
+-- config.default_domain = "WSL:DEFAULT"
 
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 
