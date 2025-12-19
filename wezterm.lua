@@ -4,7 +4,7 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 
-config.color_scheme = 'Gruvbox dark, medium (base16)'
+config.color_scheme = 'Gruvbox dark, hard (base16)'
 config.font_size = 10
 config.window_decorations = "RESIZE"
 config.macos_window_background_blur = 20
@@ -13,7 +13,7 @@ config.wsl_domains = {
   {
     -- The name of this specific domain.  Must be unique amonst all types
     -- of domain in the configuration file.
-    name = 'WSL:DEFAULT',
+    name = 'Deb',
 
     -- The name of the distribution.  This identifies the WSL distribution.
     -- It must match a valid distribution from your `wsl -l -v` output in
@@ -28,7 +28,7 @@ config.wsl_domains = {
     -- The current working directory to use when spawning commands, if
     -- the SpawnCommand doesn't otherwise specify the directory.
 
-    -- default_cwd = "/tmp"
+    default_cwd = "/home/anderson"
 
     -- The default command to run, if the SpawnCommand doesn't otherwise
     -- override it.  Note that you may prefer to use `chsh` to set the
@@ -39,7 +39,12 @@ config.wsl_domains = {
   },
 }
 
--- config.default_domain = "WSL:DEFAULT"
+
+
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+  config.default_domain = "Deb"
+end
+
 
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 
