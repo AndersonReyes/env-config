@@ -1,0 +1,62 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "zoomed_padding": true,
+  "use_system_window_tabs": false,
+  "disable_ai": true,
+  "tabs": {
+    "file_icons": false,
+    "git_status": false,
+  },
+  "tab_bar": {
+    "show_tab_bar_buttons": true,
+    "show_nav_history_buttons": false,
+    "show": true,
+  },
+  "title_bar": {
+    "show_project_items": false,
+    "show_onboarding_banner": false,
+    "show_user_picture": false,
+    "show_sign_in": false,
+    "show_branch_name": false,
+    "show_branch_icon": false,
+  },
+  "project_panel": {
+    "button": true,
+  },
+  "toolbar": {
+    "agent_review": false,
+  },
+  "relative_line_numbers": "enabled",
+  "autosave": "off",
+  "cursor_shape": "block",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "vim_mode": true,
+  "base_keymap": "JetBrains",
+  "ui_font_size": 16,
+  "buffer_font_size": 12.0,
+  "theme": "Gruvbox Dark Hard",
+  "ssh_connections": [
+    {
+      "host": "anderson@192.168.1.212",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/anderson"
+          ]
+        }
+      ],
+      "nickname": "homelab"
+    }
+  ],
+}
