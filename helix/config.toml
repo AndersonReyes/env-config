@@ -2,7 +2,3 @@ theme  = "nord"
 
 [keys.insert]
 j = {k = "normal_mode"}
-
-[editor.lsp]
-enable = false
-
