@@ -1,4 +1,10 @@
-theme  = "nord"
+theme  = "monokai"
 
 [keys.insert]
 j = {k = "normal_mode"}
+
+[editor]
+line-number = "relative"
+
+[editor.soft-wrap]
+enable = true
