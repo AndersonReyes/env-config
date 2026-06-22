@@ -1,4 +1,7 @@
-theme  = "nord"
+theme  = "monokai"
+
+[editor.soft-wrap]
+enabled = true
 
 [keys.insert]
 j = {k = "normal_mode"}
