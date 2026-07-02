@@ -6,10 +6,18 @@ auto-format = true
 [[language]]
 name = "java"
 indent = { tab-width = 4, unit = "    " }
-# formatter = { command = "mvn", args = ["com.spotify.fmt:fmt-maven-plugin:format"] }
+formatter = { command = "mvn", args = ["fmt:format"] }
 auto-format = false
+roots = ["pom.xml", "build.gradle", ".git"]
+language-servers = ["jdtls"]  
+scope = "source.java"
+file-types = ["java"]
 
 [[language]]
 name = "scala"
 file-types = ["scala", "sbt"]
 auto-format = true
+
+[[language]]
+name = "typescript"
+auto-format = false

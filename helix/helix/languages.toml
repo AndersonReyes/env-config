@@ -6,8 +6,8 @@ auto-format = true
 [[language]]
 name = "java"
 indent = { tab-width = 4, unit = "    " }
-# formatter = { command = "mvn", args = ["com.spotify.fmt:fmt-maven-plugin:format"] }
-auto-format = false
+formatter = { command = "mvn", args = ["fmt:format"] }
+auto-format = true
 
 [[language]]
 name = "scala"
