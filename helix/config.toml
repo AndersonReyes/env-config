@@ -1,11 +1,14 @@
-theme  = "monokai"
+theme  = "yellowed"
 
 [editor.soft-wrap]
 enabled = true
 
+
 [keys.insert]
 j = {k = "normal_mode"}
 
-[editor.lsp]
-enable = false
+[editor]
+line-number = "relative"
 
+[editor.soft-wrap]
+enable = true
