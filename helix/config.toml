@@ -1,7 +1,7 @@
-theme  = "yellowed"
+theme = "gruvbox"
 
 [editor.soft-wrap]
-enabled = true
+enable = true
 
 
 [keys.insert]
@@ -9,6 +9,3 @@ j = {k = "normal_mode"}
 
 [editor]
 line-number = "relative"
-
-[editor.soft-wrap]
-enable = true
