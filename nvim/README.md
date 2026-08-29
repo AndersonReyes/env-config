@@ -66,8 +66,15 @@ Check the installation with:
 - [`lua/config/options.lua`](lua/config/options.lua) contains editor options.
 - [`lua/config/keymaps.lua`](lua/config/keymaps.lua) contains general mappings.
 - [`lua/config/lazy.lua`](lua/config/lazy.lua) bootstraps lazy.nvim.
-- [`lua/plugins/init.lua`](lua/plugins/init.lua) contains plugin definitions,
-  plugin options, and plugin-specific mappings.
+- [`lua/plugins/autopairs.lua`](lua/plugins/autopairs.lua) configures automatic
+  pairs and brace blocks.
+- [`lua/plugins/gruvbox.lua`](lua/plugins/gruvbox.lua) configures the theme.
+- [`lua/plugins/sleuth.lua`](lua/plugins/sleuth.lua) configures indentation
+  detection.
+- [`lua/plugins/telescope.lua`](lua/plugins/telescope.lua) configures search
+  and Telescope-specific mappings.
+- [`lua/plugins/treesitter.lua`](lua/plugins/treesitter.lua) configures parsers,
+  highlighting, and indentation.
 
 Commit `lazy-lock.json` with the rest of the configuration. It records exact
 plugin revisions so another machine can reproduce the same plugin versions.
