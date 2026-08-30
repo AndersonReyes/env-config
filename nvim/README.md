@@ -1,7 +1,7 @@
 # Neovim configuration
 
 Minimal Neovim 0.12 configuration using lazy.nvim, Gruvbox, Treesitter,
-Telescope, and vim-sleuth.
+Telescope, vim-sleuth, and a local Codex CLI integration.
 
 ## External requirements
 
@@ -15,6 +15,7 @@ These programs must be installed outside Neovim:
 | C compiler | Compiles Treesitter parsers. On macOS, install Xcode Command Line Tools. |
 | tar and curl | Download and extract Treesitter parser sources. Included with macOS. |
 | ripgrep (`rg`) | Required by Telescope's live text search (`<leader>fg`). |
+| Codex CLI | Powers the Codex terminal and symbol lookup. Must be installed and authenticated. |
 
 `fd` is optional but can make Telescope file discovery faster.
 
@@ -68,6 +69,7 @@ Check the installation with:
 - [`lua/config/lazy.lua`](lua/config/lazy.lua) bootstraps lazy.nvim.
 - [`lua/plugins/autopairs.lua`](lua/plugins/autopairs.lua) configures automatic
   pairs and brace blocks.
+- [`lua/plugins/codex.lua`](lua/plugins/codex.lua) integrates the Codex CLI.
 - [`lua/plugins/gruvbox.lua`](lua/plugins/gruvbox.lua) configures the theme.
 - [`lua/plugins/sleuth.lua`](lua/plugins/sleuth.lua) configures indentation
   detection.
@@ -78,6 +80,21 @@ Check the installation with:
 
 Commit `lazy-lock.json` with the rest of the configuration. It records exact
 plugin revisions so another machine can reproduce the same plugin versions.
+
+## Codex integration
+
+`lua/plugins/codex.lua` adds commands backed by a persistent Codex terminal:
+
+| Command | Mapping | Behavior |
+| --- | --- | --- |
+| `:Codex` | `<leader>cc` | Start Codex. |
+| `:CodexDocumentSymbol` | `<leader>cd` | Document the symbol under the cursor. |
+| `:CodexWindow` | `<leader>cw` | Switch to the Codex buffer. |
+
+Run `<leader>cc` first. `<leader>cd` sends the current file, filetype, and symbol
+to the Codex `document-symbol` skill, then shows the response in a float. Press
+`q` to close the float without stopping Codex. Press `<C-q>` to leave terminal
+mode.
 
 ## Reloading configuration
 

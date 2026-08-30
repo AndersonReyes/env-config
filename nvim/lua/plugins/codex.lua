@@ -1,23 +1,39 @@
 local M = {}
 
 -- use a local document symbol skill for faster processing
-local prompt_template = "$document-symbol Target context: %s"
+local prompt_template = "$document-symbol %s"
 
 
 function M.get_prompt()
-  local symbol = vim.fn.expand("<cword>") 
   local file = vim.api.nvim_buf_get_name(0)
-  local filetype = vim.bo.filetype
 
+  if file == "" then
+    return nil, "current buffer has no file path"
+  end
+
+  if vim.bo.modified then
+    return nil, "save the buffer before documenting a symbol"
+  end
+
+  local symbol = vim.fn.expand("<cword>")
   if symbol == "" then
     return nil, "no symbol was provided"
   end
 
+  local cursor = vim.api.nvim_win_get_cursor(0)
   local ctx = {
-    file = file, 
-    filetype = filetype,
-    symbol = symbol
-  } 
+    schema_version = 1,
+    workspace = vim.fs.root(file, { ".git" }) or vim.fn.getcwd(),
+    file = file,
+    filetype = vim.bo.filetype,
+    symbol = symbol,
+    cursor = {
+      line = cursor[1],
+      byte_column = cursor[2],
+    },
+    line_text = vim.api.nvim_get_current_line(),
+  }
+
   return prompt_template:format(vim.json.encode(ctx))
 end
 

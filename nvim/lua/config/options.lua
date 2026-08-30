@@ -34,8 +34,8 @@ vim.opt.timeoutlen = 300
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
--- Reserve a permanent column for diagnostic and version-control signs.
-vim.opt.signcolumn = "yes"
+-- Show the sign column only when a sign exists.
+vim.opt.signcolumn = "auto"
 
 -- Highlight the screen line containing the cursor.
 vim.opt.cursorline = true
