@@ -36,24 +36,6 @@ vim.keymap.set("i", "<Tab>", function()
   return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"
 end, { expr = true, desc = "Next completion or insert tab" })
 
--- Accept a selected completion with Enter. Otherwise, let nvim-autopairs
--- expand pairs such as {|} into an indented brace block.
-vim.keymap.set("i", "<CR>", function()
-  local autopairs = require("nvim-autopairs")
-
-  if vim.fn.pumvisible() == 1 then
-    local selected = vim.fn.complete_info({ "selected" }).selected
-
-    if selected ~= -1 then
-      return autopairs.esc("<C-y>")
-    end
-
-    return autopairs.esc("<C-e>") .. autopairs.autopairs_cr()
-  end
-
-  return autopairs.autopairs_cr()
-end, { expr = true, desc = "Accept completion or insert line" })
-
 -- Move between split windows with Ctrl plus h/j/k/l.
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to lower window" })
