@@ -88,17 +88,17 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
   end,
 })
 
--- Use one statusline across the bottom of Neovim instead of one per split.
-vim.opt.laststatus = 3
+-- Use one statusline per split/buffer
+vim.opt.laststatus = 2
 
 -- Statusline contents, from left to right:
---   relative file path; help, modified, and read-only flags;
+--   filename and buffer number; help, modified, and read-only flags;
 --   filetype; cursor line and column; percentage through the file.
 -- %< marks where the file path may be truncated when space is limited.
 -- %= separates left-aligned content from right-aligned content.
 vim.opt.statusline = table.concat({
   " ",
-  "%<%f",
+  "%<%t [%n]",
   " %h%m%r",
   "%=",
   "%y",

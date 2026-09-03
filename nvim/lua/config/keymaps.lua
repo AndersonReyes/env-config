@@ -41,3 +41,30 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to upper window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+
+-- Neovim's built-in LSP mappings:
+--   K       Hover documentation
+--   grn     Rename symbol
+--   gra     Code action
+--   grr     Find references
+--   gri     Go to implementation
+--   grt     Go to type definition
+--   gO      List document symbols
+--   <C-]>   Go to definition
+--   [d/]d   Previous/next diagnostic
+--   <C-s>   Signature help in Insert mode
+
+-- Additional LSP mappings.
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
+  desc = "Go to definition",
+})
+
+vim.keymap.set("n", "<leader>lf", function()
+  vim.lsp.buf.format({ async = true })
+end, {
+  desc = "Format buffer",
+})
+
+vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, {
+  desc = "Show diagnostic",
+})
