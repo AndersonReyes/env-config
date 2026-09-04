@@ -3,7 +3,7 @@ return {
   opts = {
     ensure_installed = {
       "lua_ls", "rust_analyzer", "gopls",
-      "pyright", "jdtls",
+      "pyrefly", "jdtls",
     },
   },
   dependencies = {
