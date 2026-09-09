@@ -1,9 +1,11 @@
 # Tools
-https://dandavison.github.io/delta/configuration.html
-https://github.com/charmbracelet/glow
-https://github.com/atuinsh/atuin
-https://github.com/neovim/neovim
-https://github.com/httpie/cli
+
+- [Delta](https://dandavison.github.io/delta/configuration.html) — Syntax-highlighting pager for Git and diff output.
+- [Glow](https://github.com/charmbracelet/glow) — Terminal Markdown reader and renderer.
+- [Atuin](https://github.com/atuinsh/atuin) — Search, sync, and manage shell history.
+- [Neovim](https://github.com/neovim/neovim) — Extensible Vim-based text editor.
+- [HTTPie](https://github.com/httpie/cli) — User-friendly command-line HTTP client.
+- [nless](https://github.com/mpryor/nothing-less) — TUI pager for tabular data, JSON, and logs.
 
 ## Pre-commit
 
