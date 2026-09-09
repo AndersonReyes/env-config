@@ -8,17 +8,6 @@ vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 -- Use Ctrl-Q to leave terminal mode.
 vim.keymap.set("t", "<C-q>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- Open Codex or document the symbol under the cursor.
-vim.keymap.set("n", "<leader>cc", "<cmd>Codex<CR>", {
-  desc = "Open Codex",
-})
-vim.keymap.set("n", "<leader>cd", "<cmd>CodexDocumentSymbol<CR>", {
-  desc = "Document symbol with Codex",
-})
-vim.keymap.set("n", "<leader>cw", "<cmd>CodexWindow<CR>", {
-  desc = "Switch to Codex",
-})
-
 -- Navigate between open buffers.
 vim.keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", {
   desc = "Next buffer",
@@ -55,16 +44,3 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 --   <C-s>   Signature help in Insert mode
 
 -- Additional LSP mappings.
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
-  desc = "Go to definition",
-})
-
-vim.keymap.set("n", "<leader>lf", function()
-  vim.lsp.buf.format({ async = true })
-end, {
-  desc = "Format buffer",
-})
-
-vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, {
-  desc = "Show diagnostic",
-})
