@@ -55,6 +55,11 @@ vim.opt.pumheight = 10
 -- Show command-line matches and complete the longest common portion first.
 vim.opt.wildmode = { "longest:full", "full" }
 
+-- Use tree view in netrw without changing the working directory when browsing.
+vim.g.netrw_liststyle = 3
+vim.g.netrw_browse_split = 0
+vim.g.netrw_keepdir = 1
+
 -- Give floating windows a consistent rounded border.
 vim.opt.winborder = "rounded"
 

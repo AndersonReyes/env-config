@@ -1,6 +1,10 @@
 -- Clear highlighted search results with Escape in normal mode.
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+vim.keymap.set("n", "<leader>e", "<cmd>Explore<CR>", {
+  desc = "Explore files",
+})
+
 -- Leave insert mode by typing j followed quickly by k.
 -- The normal Escape key continues to work.
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
